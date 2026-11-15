@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dr. Fallow — Cultivar con inteligencia</title>
+<style>
+:root{--forest:#285b45;--leaf:#76a878;--mint:#e7f2e7;--ink:#27382e;--muted:#596c60;--line:#e1e8dc;--gold:#936016;--red:#963e36}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#f4f7ed,#edf5ed);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}button:hover:not(:disabled){filter:brightness(1.05)}button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #76a878;outline-offset:3px}
+.shell{max-width:1120px;margin:auto;padding:22px}.top,.brand,.mainhead,.footerbar,.chosen{display:flex;align-items:center;gap:12px}.top,.mainhead,.footerbar{justify-content:space-between}.top{margin-bottom:18px}.brandmark{width:52px;height:52px;border-radius:17px;background:var(--forest);display:grid;place-items:center;font-size:28px}.brand h1{font-size:23px;color:var(--forest);margin:0}.brand p{font-size:12px;color:var(--muted);margin:3px 0 0}.top-tag{font-size:10px;font-weight:800;background:white;border:1px solid var(--line);border-radius:30px;padding:9px 13px;color:var(--forest)}
+.app{display:grid;grid-template-columns:265px minmax(0,1fr);gap:17px}.side,.main{background:#ffffffef;border:1px solid var(--line);border-radius:25px;box-shadow:0 12px 34px #294a3510}.side{padding:19px;display:flex;flex-direction:column}.doctor{background:linear-gradient(145deg,#edf6e9,#f8f6e9);border-radius:19px;padding:16px 12px;text-align:center}.doctor-art{width:105px;height:105px;margin:auto;border-radius:36px;background:#d9ead8;display:grid;place-items:center;font-size:62px}.doctor h2{font-size:18px;color:var(--forest);margin:12px 0 5px}.doctor p,.side-tip{font-size:12px;line-height:1.5;color:var(--muted)}.doctor p{margin:0}.side-label,.eyebrow{font-size:10px;letter-spacing:.1em;font-weight:800;color:var(--muted);text-transform:uppercase}.side-label{margin:20px 0 9px}.steps{display:grid;gap:10px}.step{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px}.step-num{width:25px;height:25px;border-radius:50%;background:#f0f2ed;display:grid;place-items:center;font-weight:800}.step.active{color:var(--forest);font-weight:800}.step.active .step-num{background:var(--forest);color:white}.step.done .step-num{background:#e1f1e2;color:var(--forest)}.side-tip{margin-top:auto;padding:12px;background:#f7f8f2;border-radius:15px}
+.main{min-height:720px;display:flex;flex-direction:column;overflow:hidden}.mainhead{padding:17px 22px;border-bottom:1px solid var(--line)}.mainhead strong{color:var(--forest);font-size:13px}.mainhead span{font-size:11px;color:var(--muted)}.progress{height:5px;background:#edf1e9}.progress span{display:block;height:100%;width:0;background:var(--leaf);transition:width .3s}.content{padding:26px;flex:1}.content:focus{outline:none}.footerbar{border-top:1px solid var(--line);padding:14px 21px}.footerbar small{font-size:10px;color:var(--muted)}
+h2{font-size:25px;color:var(--forest);margin:5px 0 9px}h3{color:var(--forest);font-size:16px;margin:0 0 8px}p{line-height:1.6}.sub{font-size:13px;color:var(--muted);margin:0 0 20px}.hero{text-align:center;max-width:620px;margin:10px auto}.hero-art{width:150px;height:150px;margin:0 auto 18px;border-radius:48px;background:linear-gradient(145deg,#e3f0df,#f7efd9);display:grid;place-items:center;font-size:85px}.hero h2{font-size:30px}.hero p{font-size:14px;color:var(--muted)}.actions{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}.hero .actions{justify-content:center}.btn{border:0;background:var(--forest);color:white;padding:12px 17px;border-radius:13px;font-weight:800;font-size:13px}.btn.alt{background:white;color:var(--forest);border:1px solid var(--line)}.intro-note,.notice{background:#f5f8f1;border:1px solid var(--line);padding:12px 15px;border-radius:15px;font-size:12px;line-height:1.6;color:var(--muted);margin-top:18px}
+.crop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.crop-card{border:1.5px solid var(--line);border-radius:19px;background:white;padding:16px;text-align:left;display:flex;align-items:center;gap:14px;min-height:120px;color:var(--ink)}.crop-card:hover{border-color:var(--leaf)}.crop-avatar,.chosen-avatar{width:70px;height:70px;flex:0 0 70px;border-radius:23px;display:grid;place-items:center;font-size:44px;background:#f0f5e8}.crop-card b{display:block;color:var(--forest);font-size:16px;margin-bottom:4px}.crop-card small{color:var(--muted);font-size:11px}.chosen{padding:13px;background:#f4f7ef;border:1px solid var(--line);border-radius:17px;margin-bottom:20px}.chosen b{color:var(--forest);font-size:15px}.chosen p{margin:3px 0 0;color:var(--muted);font-size:12px}.chosen-avatar{background:white}
+.chat-wrap{max-width:700px;margin:0 auto}.chat-log{display:grid;gap:10px}.msg{display:flex;align-items:flex-start;gap:9px;margin:4px 0}.msg-icon{width:32px;height:32px;flex:0 0 32px;border-radius:11px;background:#e5f0e3;display:grid;place-items:center;font-size:18px}.bubble{max-width:88%;padding:12px 15px;border:1px solid #e3ece0;border-radius:5px 17px 17px 17px;background:#f1f6ef;font-size:13px;line-height:1.6;white-space:pre-line}.bubble.user{justify-self:end;margin-left:auto;border-color:var(--forest);border-radius:17px 5px 17px 17px;background:var(--forest);color:#fff}.reply-area{margin:12px 0 18px 41px}.reply-area .answers{display:flex;flex-wrap:wrap;gap:8px}.answer{background:white;border:1px solid #b9d2bb;color:var(--forest);border-radius:12px;padding:10px 13px;font-size:12px;font-weight:700;text-align:left}.answer:hover{background:#edf6ed;border-color:var(--leaf)}.answer[aria-pressed="true"]{background:var(--forest);color:white}.text-entry{display:flex;gap:8px;margin-top:12px}.text-entry input{min-width:0;flex:1;border:1px solid #bfd3c0;border-radius:12px;padding:11px 13px}.helper{font-size:11px;color:var(--muted);margin:8px 0}.error{font-size:12px;color:var(--red)}.error:empty{display:none}
+.verdict{border:1px solid var(--line);border-radius:22px;padding:22px;background:#edf6eb;margin-bottom:18px}.verdict.warn{background:#fff6e6;border-color:#ead6af}.verdict.bad{background:#fff0ed;border-color:#ebc2bb}.verdict.unknown{background:#f0f2fa;border-color:#d5daeb}.verdict-top{display:flex;gap:14px;align-items:center}.verdict-icon{font-size:46px;flex:0 0 55px;text-align:center}.verdict h2{font-size:24px;margin:0 0 5px}.verdict p{margin:7px 0 0;font-size:13px}.pill{display:inline-block;border-radius:20px;background:#ffffffc7;padding:5px 10px;font-size:11px;font-weight:750;margin-top:10px}.factor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.factor{border:2px solid var(--line);border-radius:16px;background:white;overflow:hidden}.factor summary{list-style:none;cursor:pointer;padding:14px;min-height:145px}.factor summary::-webkit-details-marker{display:none}.factor-icon{font-size:28px;display:block;margin-bottom:6px}.factor b{display:block;font-size:13px}.factor .state{display:block;margin-top:7px;font-size:11px;font-weight:850;color:#205d34}.factor.warn{background:#fff7df;border-color:#d59619;box-shadow:0 3px 12px #d5961924}.factor.warn summary{background:#fff7df}.factor.warn .state{color:#754600}.factor.bad{background:#ffefeb;border-color:#bd4739;box-shadow:0 3px 12px #bd473924}.factor.bad summary{background:#ffefeb}.factor.bad .state{color:#8b261e}.factor.unknown{background:#f0f2fc;border-color:#7885bb}.factor.unknown summary{background:#f0f2fc}.factor.unknown .state{color:#394778}.factor.good{border-color:#5b9b66;background:#eff8ed}.factor.good summary{background:#eff8ed}.factor summary small{display:block;margin-top:6px;font-size:10px;color:var(--muted)}.factor-body{padding:0 14px 14px;font-size:12px;line-height:1.5}.evidence{color:var(--muted);border-left:3px solid var(--line);padding-left:8px;overflow-wrap:anywhere}.factor-body p{margin:8px 0}
+.section-label{margin:22px 0 12px;font-size:16px}.task-list{display:grid;gap:10px}.task{display:flex;gap:12px;padding:14px;border:1px solid var(--line);border-radius:15px;background:#fbfcf8}.task-icon{font-size:26px;flex:0 0 32px}.task b{font-size:13px;color:var(--forest)}.task p{font-size:12px;color:var(--muted);margin:4px 0 0}.tabs{display:flex;gap:7px;margin:20px 0 14px;flex-wrap:wrap}.tab{flex:1;border:1px solid var(--line);background:white;border-radius:13px;padding:11px 9px;font-size:12px;color:var(--forest);font-weight:750}.tab[aria-selected="true"]{background:var(--forest);color:white}.phase-panel{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fbfcf8}.phase-panel .sub{margin-bottom:14px}.check-progress{font-size:12px;color:var(--forest);margin-bottom:10px}.check-item{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line);font-size:13px;line-height:1.5}.check-item input{accent-color:var(--forest);width:18px;height:18px;flex:0 0 18px;margin-top:2px}.check-item:has(input:checked){color:var(--muted)}.rotation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.rotation-card{border:1px solid var(--line);background:white;border-radius:15px;padding:14px}.rotation-card .emoji{font-size:32px}.rotation-card b{display:block;color:var(--forest);font-size:14px;margin:5px 0}.rotation-card p{font-size:12px;color:var(--muted);margin:0}.rotation-card small{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+.summary{border:1px solid var(--line);border-radius:15px;margin-top:20px;padding:14px;background:white}.summary h3{font-size:14px;margin:0 0 10px}.summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.summary-item{min-width:0;padding:8px 9px;border-radius:11px;background:#f5f8f2}.summary-item span{display:block;font-size:10px;font-weight:750;color:var(--forest)}.summary-item b{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;margin-top:3px;font-size:11px;line-height:1.35;color:var(--muted);overflow-wrap:anywhere}.nasa{font-size:11px;color:var(--muted);line-height:1.5;margin:18px 0 0;padding-top:12px;border-top:1px solid var(--line)}.nasa strong{font-size:11px}.legend{font-size:11px;color:var(--muted);line-height:1.6}.hidden{display:none!important}
+@media(max-width:800px){.shell{padding:12px}.app{grid-template-columns:1fr}.side{padding:12px}.doctor{display:flex;align-items:center;text-align:left;gap:13px;padding:10px}.doctor-art{width:60px;height:60px;flex:0 0 60px;border-radius:20px;font-size:36px}.doctor h2{font-size:15px;margin:0 0 4px}.doctor p{font-size:11px}.side-label{margin:12px 0 7px}.steps{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.step{flex-direction:column;font-size:9px;gap:5px;text-align:center}.side-tip{display:none}.main{min-height:600px}.content{padding:18px}.top-tag{display:none}.factor-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.crop-card{padding:12px;gap:10px}.crop-avatar{width:54px;height:54px;flex-basis:54px;font-size:35px}.crop-card b{font-size:14px}.verdict{padding:17px}.verdict h2{font-size:21px}.footerbar{padding:12px}.footerbar small{display:none}.reply-area{margin-left:0}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:390px){.crop-grid,.rotation-grid{grid-template-columns:1fr}.brand p{font-size:10px}.text-entry{flex-wrap:wrap}.text-entry input{flex-basis:100%}.tab{flex-basis:40%}.summary{padding:10px}.summary-grid{gap:5px}.summary-item{padding:7px}.verdict-icon{font-size:35px;flex-basis:40px}}
+@media(prefers-reduced-motion:reduce){.progress span{transition:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top"><div class="brand"><div class="brandmark" aria-hidden="true">🌱</div><div><h1>Dr. Fallow</h1><p>Cultivar con inteligencia · Cuidar el suelo para el futuro</p></div></div><div class="top-tag">PROTOTIPO INTERACTIVO</div></header>
+<div class="app">
+<aside class="side">
+ <div class="doctor"><div class="doctor-art" aria-hidden="true">👨‍🌾</div><div><h2>Dr. Fallow</h2><p>Tu asistente para elegir tu cultivo de hortalizas 🥕🫜🫘🫛 y cuidar la salud del suelo.</p></div></div>
+ <div class="side-label">Tu recorrido</div>
+ <div class="steps" id="steps">
+  <div class="step active"><span class="step-num">1</span><span>Bienvenida</span></div>
+  <div class="step"><span class="step-num">2</span><span>Elige cultivo</span></div>
+  <div class="step"><span class="step-num">3</span><span>Tu terreno</span></div>
+  <div class="step"><span class="step-num">4</span><span>Diagnóstico</span></div>
+  <div class="step"><span class="step-num">5</span><span>Plan de siembra</span></div>
+ </div>
+ <div class="side-tip">💡 <b>¿Sabías que…?.</b><br>Dejar descansar el suelo, mantenerlo cubierto y alternar familias de cultivos puede ayudar a conservar su salud.</div>
+</aside>
+<main class="main">
+ <div class="mainhead"><div><strong id="headTitle">Bienvenido a Dr. Fallow</strong><br><span id="headSub">Tu consulta agrícola</span></div><span id="counter">Inicio</span></div>
+ <div class="progress" id="progress" role="progressbar" aria-label="Progreso de la consulta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressBar"></span></div>
+ <section class="content" id="content" tabindex="-1" aria-label="Consulta y resultados"></section>
+ <div class="footerbar"><button class="btn alt" id="backBtn" disabled>← Atrás</button><small>Dr. Fallow · Agricultura resiliente</small><button class="btn alt" id="restartBtn">Reiniciar ↻</button></div>
+</main>
+</div>
+</div>
+<script>
+'use strict';
+const crops = {
+ carrot:{name:'Zanahoria',avatar:'🥕',friend:'Zanahorín',family:'Apiaceae',type:'Cultivo de raíz',hello:'¡Hola! Soy Zanahorín. Necesito suelo suelto, profundo y sin piedras. Conozcamos tu terreno.',specific:'¿Tu suelo está suelto o suele estar compacto?',specificOpts:['Está suelto y fácil de trabajar','Se compacta o forma terrones duros','Tiene muchas piedras','No estoy seguro'],sow:'Siembra directamente en una cama fina y sin piedras. Sigue la profundidad y separación de tu variedad; evita trasplantar.',care:'Aclara las plantas cuando se establezcan y mantén humedad uniforme. Evita estiércol fresco y compactar la cama.'},
+ pea:{name:'Arveja',avatar:'🫛',friend:'Arvejita',family:'Fabaceae',type:'Leguminosa',hello:'¡Hola! Soy Arvejita. Prefiero una temporada fresca y un suelo que no se encharque.',specific:'¿Tu zona suele tener temperaturas frescas durante la temporada de cultivo?',specificOpts:['Sí, suele ser fresca','Es templada','Es cálida','No estoy seguro'],sow:'Siembra directamente en temporada fresca, según tu variedad. Instala soporte si es trepadora; respeta el espacio indicado en el envase.',care:'Cuida la humedad durante floración y formación de vainas. La fijación de nitrógeno requiere nodulación efectiva; no sustituye un análisis de suelo.'},
+ beet:{name:'Remolacha',avatar:'🫜',friend:'Remolachín',family:'Amaranthaceae',type:'Cultivo de raíz',hello:'¡Hola! Soy Remolachín. Necesito suelo suelto, buena luz y humedad uniforme.',specific:'¿Cómo está preparado el terreno para desarrollar raíces?',specificOpts:['Está suelto y profundo','Está algo compacto','Tiene piedras o terrones','No estoy seguro'],sow:'Siembra directamente en suelo suelto. Aclara las plántulas si nacen agrupadas; usa la separación y profundidad de tu variedad.',care:'Mantén humedad uniforme para favorecer raíces de buena calidad y evita trabajar el suelo mojado.'},
+ bean:{name:'Frijol',avatar:'🫘',friend:'Frijolito',family:'Fabaceae',type:'Leguminosa',hello:'¡Hola! Soy Frijolito. Me gusta una temporada sin heladas, el sol y un buen drenaje.',specific:'¿Qué tipo de frijol quieres sembrar o conoces?',specificOpts:['Frijol arbustivo','Frijol de enredadera','Una variedad local','Todavía no lo sé'],sow:'Siembra directamente cuando haya pasado el riesgo de heladas y el suelo esté suficientemente cálido para tu variedad.',care:'Vigila la humedad en floración y llenado de vainas. Evita mojar el follaje de forma prolongada y revisa la presencia de plagas.'}
+};
+const common = [
+ {key:'location',title:'Ubicación',icon:'📍',q:'¿En qué municipio, departamento o región se encuentra tu terreno?',type:'text',hint:'Ejemplo: Sogamoso, Boyacá.'},
+ {key:'size',title:'Tamaño del terreno',icon:'📐',q:'¿Qué tamaño aproximado tiene el área que quieres sembrar?',opts:['Menos de 100 m²','Entre 100 y 500 m²','Entre 500 y 1.000 m²','Más de 1.000 m²','Aún no lo sé']},
+ {key:'soil',title:'Tipo de suelo',icon:'🌱',q:'¿Cómo describirías la textura de tu suelo al tocarlo?',opts:['Arcilloso: pegajoso cuando está húmedo','Arenoso: suelto y con granos','Franco: mezcla equilibrada','No estoy seguro']},
+ {key:'drainage',title:'Drenaje',icon:'💧',q:'Después de una lluvia, ¿qué ocurre con el agua en tu terreno?',opts:['Se absorbe rápidamente','Permanece un rato y luego se absorbe','Se forman charcos por mucho tiempo','No lo he observado']},
+ {key:'sun',title:'Luz solar',icon:'☀️',q:'¿Cuántas horas de sol directo recibe el terreno al día?',opts:['Menos de 4 horas','Entre 4 y 6 horas','Entre 6 y 8 horas','Más de 8 horas','No estoy seguro']},
+ {key:'water',title:'Agua disponible',icon:'🚿',q:'¿Cómo es la disponibilidad de agua para el riego?',opts:['Suficiente durante todo el año','Limitada en algunas temporadas','Muy escasa','Dependo principalmente de la lluvia']},
+ {key:'rain',title:'Lluvias',icon:'🌧️',q:'En los últimos meses, ¿cómo han sido las lluvias en tu zona?',opts:['Más abundantes de lo habitual','Normales para la temporada','Más escasas de lo habitual','Muy irregulares','No estoy seguro']},
+ {key:'previous',title:'Cultivo anterior',icon:'🔄',q:'¿Qué se ha cultivado recientemente en ese terreno?',opts:['Leguminosas (frijol, arveja, habas)','Raíces (zanahoria, remolacha, papa)','Hortalizas de hoja o fruto','Varios cultivos / rotación','Ha estado en descanso','Es un terreno nuevo']},
+ {key:'last',title:'Última siembra',icon:'📅',q:'¿Hace cuánto tiempo se realizó la última siembra o cosecha?',opts:['Hace menos de 1 mes','Entre 1 y 3 meses','Entre 3 y 6 meses','Hace más de 6 meses','No lo recuerdo / terreno nuevo']},
+ {key:'rest',title:'Descanso del suelo',icon:'🌾',q:'¿El terreno ha tenido un periodo de descanso sin cultivos?',opts:['Sí, menos de 1 mes','Sí, entre 1 y 3 meses','Sí, entre 3 y 6 meses','Sí, más de 6 meses','No ha descansado','No estoy seguro']},
+ {key:'priority',title:'Tu prioridad',icon:'🎯',q:'¿Qué te gustaría priorizar con esta siembra?',opts:['Ahorrar agua 💧','Mejorar la fertilidad del suelo 🌿','Producir alimentos pronto 🥕','Cuidar el suelo a largo plazo 🌎','Un equilibrio entre todo']}
+];
+const $ = id => document.getElementById(id);
+const content = $('content');
+const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+let cropKey = null, answers = {}, questionList = [], qIndex = 0, screen = 'welcome', phase = 'before';
+let completed = new Set();
+const stateLabels = {good:'✓ Favorable',warn:'! Ajustar',bad:'✕ Resolver antes',unknown:'? Confirmar'};
+
+function setHeader(title, sub, counter, progress) {
+ $('headTitle').textContent = title;
+ $('headSub').textContent = sub;
+ $('counter').textContent = counter;
+ $('progressBar').style.width = progress + '%';
+ $('progress').setAttribute('aria-valuenow', progress);
+ $('backBtn').disabled = screen === 'welcome';
+ const index = ['welcome','crop','questions','results','plan'].indexOf(screen);
+ document.querySelectorAll('.step').forEach((el,i) => {
+  el.classList.toggle('active',i === index);
+  el.classList.toggle('done',i < index);
+  if (i === index) el.setAttribute('aria-current','step'); else el.removeAttribute('aria-current');
+  el.querySelector('.step-num').textContent = i < index ? '✓' : i + 1;
+ });
+}
+function focusContent() { content.focus({preventScroll:true}); }
+function welcome() {
+ screen = 'welcome';
+ setHeader('Bienvenido a Dr. Fallow','Un acompañante para tus decisiones agrícolas','Inicio',0);
+ content.innerHTML = `<div class="hero"><div class="hero-art" aria-hidden="true">👨‍🌾</div><div class="eyebrow">Conoce a tu asistente agrícola</div><h2>¡Cultivemos un futuro más saludable!</h2><p>Soy <b>Dr. Fallow</b>. Te ayudo a explorar si tu terreno está listo para el cultivo que quieres sembrar y cómo cuidarlo después.</p><p>Mi nombre viene de <i>fallow</i>, una práctica que permite que la tierra descanse y se recupere. Pero descansar también puede significar protegerla con coberturas vegetales y un buen manejo.</p><div class="actions"><button class="btn" id="startBtn">Comenzar mi consulta →</button></div><div class="intro-note">🌱 <b>¿Cómo funciona?</b> Elige qué quieres sembrar, conversa con tu compañero de cultivo, responde algunas preguntas sobre tu terreno y descubre su aptitud → Prepara tu siembra y rotación.</div></div>`;
+ $('startBtn').onclick = chooseCrop;
+}
+function chooseCrop() {
+ screen = 'crop';
+ setHeader('Elige tu cultivo','Selecciona tu compañero de siembra','Paso 1 de 4',15);
+ content.innerHTML = `<div class="eyebrow">Tu próxima siembra</div><h2>¿Qué te gustaría sembrar?</h2><p class="sub">Revisaremos las necesidades de tu cultivo con tus propias respuestas.</p><div class="crop-grid">${Object.entries(crops).map(([id,c]) => `<button class="crop-card" data-crop="${id}"><span class="crop-avatar" aria-hidden="true">${c.avatar}</span><span><b>${c.name}</b><small>${c.type}<br>${c.family} · Ver necesidades →</small></span></button>`).join('')}</div>`;
+ document.querySelectorAll('[data-crop]').forEach(button => button.onclick = () => selectCrop(button.dataset.crop));
+ focusContent();
+}
+function selectCrop(id) {
+ cropKey = id;
+ answers = {};
+ completed = new Set();
+ const c = crops[id];
+ questionList = [{key:'specific',title:'Necesidades del cultivo',icon:c.avatar,q:c.specific,opts:c.specificOpts},...common];
+ qIndex = 0;
+ renderQuestion();
+}
+function chosen() {
+ const c = crops[cropKey];
+ return `<div class="chosen"><div class="chosen-avatar" aria-hidden="true">${c.avatar}</div><div><b>${c.friend} · ${c.name}</b><p>${c.type} · ${c.family}</p></div></div>`;
+}
+function renderQuestion() {
+ screen = 'questions';
+ const q = questionList[qIndex];
+ if (!q) { showResults(); return; }
+ setHeader('Consulta personalizada',`Con ${crops[cropKey].friend}`,`Pregunta ${qIndex+1} de ${questionList.length}`,25 + Math.round(qIndex/questionList.length*55));
+ const messages = [{who:'bot',text:crops[cropKey].hello},{who:'bot',text:'Antes de recomendarte cómo sembrar, necesito conocer algunos detalles de tu terreno. Puedes elegir “No estoy seguro” cuando no conozcas una respuesta.'}];
+ for (let i=0;i<qIndex;i++) messages.push({who:'bot',text:questionList[i].q},{who:'user',text:answers[questionList[i].key] || ''});
+ messages.push({who:'bot',text:q.q});
+ const transcript = messages.map(message => message.who === 'bot'
+  ? `<div class="msg"><span class="msg-icon" aria-hidden="true">${crops[cropKey].avatar}</span><div class="bubble">${escapeHTML(message.text)}</div></div>`
+  : `<div class="msg"><div class="bubble user">${escapeHTML(message.text)}</div></div>`).join('');
+ content.innerHTML = `${chosen()}<div class="chat-wrap"><div class="eyebrow">Tu conversación · ${qIndex+1}/${questionList.length}</div><div class="chat-log" aria-live="polite">${transcript}</div><div class="reply-area"><div class="eyebrow">${q.icon} ${q.title}</div>${q.type === 'text' ? `<form id="locationForm"><label class="helper" for="locationInput">Municipio, departamento o región</label><div class="text-entry"><input id="locationInput" maxlength="100" required value="${escapeHTML(answers[q.key] || '')}" placeholder="Escribe tu respuesta…" aria-describedby="locationHint locationError"><button class="btn" type="submit">Enviar →</button></div><p class="helper" id="locationHint">${q.hint}</p><p class="error" id="locationError" role="alert"></p></form>` : `<div class="answers">${q.opts.map((opt,i) => `<button class="answer" data-answer="${i}" aria-pressed="${answers[q.key] === opt}">${opt}</button>`).join('')}</div>`}</div><p class="helper">Puedes volver atrás para corregir una respuesta. No se consultan datos externos.</p></div>`;
+ if (q.type === 'text') {
+  $('locationForm').onsubmit = event => {
+   event.preventDefault();
+   const value = $('locationInput').value.trim();
+   if (!value) { $('locationError').textContent = 'Escribe una ubicación para continuar.'; $('locationInput').focus(); return; }
+   submitAnswer(value);
+  };
+  $('locationInput').focus();
+ } else {
+  document.querySelectorAll('[data-answer]').forEach(button => button.onclick = () => submitAnswer(q.opts[Number(button.dataset.answer)]));
+  focusContent();
+ }
+}
+function submitAnswer(value) {
+ answers[questionList[qIndex].key] = value;
+ completed.clear();
+ qIndex++;
+ renderQuestion();
+}
+
+// Each constraint remains visible: a favorable factor cannot cancel a blocking risk.
+function assess(id, a) {
+ const root = id === 'carrot' || id === 'beet', legume = id === 'pea' || id === 'bean';
+ const factors = [];
+ const includes = (key,text) => (a[key] || '').includes(text);
+ const unknown = key => !a[key] || /No estoy seguro|No lo he observado|Todavía no/.test(a[key]);
+ const add = (key,icon,title,state,label,action,evidence,essential = true) => factors.push({key,icon,title,state,label,action,evidence,essential});
+ let soilState = 'good', soilLabel = 'Textura equilibrada', soilAction = 'Conserva la estructura y ajusta el compost maduro según el análisis del suelo.';
+ if (unknown('soil')) { soilState = 'unknown'; soilLabel = 'Textura sin confirmar'; soilAction = 'Observa la textura y solicita una revisión local de estructura y suelo.'; }
+ else if (includes('soil','Arcilloso')) { soilState = 'warn'; soilLabel = 'Revisar estructura'; soilAction = 'No trabajes el suelo mojado. Comprueba compactación y drenaje; incorpora materia orgánica madura según análisis.'; }
+ else if (includes('soil','Arenoso')) { soilState = 'warn'; soilLabel = 'Pierde humedad rápido'; soilAction = 'Aporta compost maduro según análisis y usa cobertura entre líneas; revisa la humedad con más frecuencia.'; }
+ add('soil','🌱','Suelo',soilState,soilLabel,soilAction,a.soil);
+ if (root) {
+  let state = 'good', label = 'Raíces con espacio', action = 'Prepara una cama fina sin compactarla; evita estiércol fresco.';
+  if (unknown('specific')) { state = 'unknown'; label = 'Revisar profundidad'; action = 'Comprueba que la cama esté suelta y tenga profundidad útil para la variedad.'; }
+  else if (/compact|piedras|terrones/i.test(a.specific)) { state = 'bad'; label = 'Cama no preparada'; action = 'Antes de sembrar, mejora la cama sin trabajarla mojada y retira piedras y terrones. Si no es posible, usa una cama elevada con suelo apto y limpio.'; }
+  add('structure',crops[id].avatar,'Cama de raíces',state,label,action,a.specific);
+ }
+ if (unknown('drainage')) add('drainage','💧','Drenaje','unknown','Falta observar','Observa el lote después de lluvia o riego; confirma que no haya agua estancada.',a.drainage);
+ else if (includes('drainage','charcos')) add('drainage','💧','Drenaje','bad','Encharcamiento','Resuelve primero el drenaje. Valora camas elevadas y manejo del agua con apoyo local; confirma que desaparecen los charcos antes de sembrar.',a.drainage);
+ else if (includes('drainage','Permanece')) add('drainage','💧','Drenaje','warn','Vigilar infiltración','Revisa cuánto dura el agua acumulada; si persiste, mejora el drenaje antes de sembrar.',a.drainage);
+ else add('drainage','💧','Drenaje','good','Sin charcos reportados','Comprueba que el agua llegue a las raíces sin dejar el suelo saturado.',a.drainage);
+ if (unknown('sun')) add('sun','☀️','Luz solar','unknown','Horas sin confirmar','Observa y registra las horas de sol directo durante un día representativo.',a.sun);
+ else if (includes('sun','Menos de 4')) add('sun','☀️','Luz solar','bad','Luz insuficiente','Busca un sector con más sol o reduce sombras evitables. Confirma la luz necesaria para tu variedad antes de sembrar.',a.sun);
+ else if (includes('sun','4 y 6')) add('sun','☀️','Luz solar','warn','Luz moderada','Usa la zona más iluminada y confirma si esas horas son suficientes para la variedad; el rendimiento podría ser menor.',a.sun);
+ else add('sun','☀️','Luz solar','good','Buena exposición','Conserva la exposición solar y ajusta el riego al calor y a la humedad observada.',a.sun);
+ if (unknown('water')) add('water','🚿','Agua','unknown','Disponibilidad sin confirmar','Confirma una fuente de agua suficiente para establecimiento, floración y desarrollo del cultivo.',a.water);
+ else if (includes('water','Muy escasa')) add('water','🚿','Agua','bad','Agua insuficiente','No inicies todavía: asegura agua para las etapas críticas o espera una temporada con lluvias confiables. La cobertura no reemplaza el riego necesario.',a.water);
+ else if (includes('water','Limitada')) add('water','🚿','Agua','warn','Planificar reserva','Programa la siembra cuando haya agua y valora riego eficiente y reserva disponible para los periodos secos.',a.water);
+ else if (includes('water','lluvia')) add('water','🚿','Agua','warn','Dependes de lluvias','Consulta el pronóstico local y la época de lluvias. Prevé agua de respaldo para días secos y etapas críticas.',a.water);
+ else add('water','🚿','Agua','good','Riego disponible','Riega según la humedad del suelo, no por un calendario fijo; evita saturarlo.',a.water);
+ const climateKey = id === 'pea' ? 'specific' : 'climate';
+ if (id !== 'pea') add('climate','🌡️','Temporada','unknown','Época por confirmar','La temporada y las heladas no se preguntaron ni se infieren de tu ubicación. Confírmalas con información local antes de sembrar.', 'No preguntado; no inferido de la ubicación.',false);
+ else if (unknown(climateKey)) add('climate','🌡️','Temporada','unknown','Clima sin confirmar','Confirma temperaturas, riesgo de heladas y época recomendada para la variedad con información local.',a[climateKey]);
+ else if (id === 'pea' && includes('specific','cálida')) add('climate','🌡️','Temporada','bad','Arveja: esperar fresco','Pospón la arveja hasta una temporada fresca o usa una zona más fresca. Una temporada cálida puede perjudicar floración y vainas.',a.specific);
+ else if (id === 'pea' && includes('specific','templada')) add('climate','🌡️','Temporada','warn','Validar la variedad','Comprueba temperaturas reales y tolerancia de la variedad; ajusta la época de siembra con asesoría local.',a[climateKey]);
+ else add('climate','🌡️','Temporada','good','Temporada fresca reportada','Confirma la fecha local de siembra y el rango de temperatura de tu variedad.',a[climateKey]);
+ if (!a.previous) add('rotation','🔄','Rotación','unknown','Historial sin confirmar','Identifica el último cultivo y su familia antes de decidir la rotación.',a.previous,false);
+ else if (legume && includes('previous','Leguminosas')) add('rotation','🔄','Rotación','warn','Repetirías familia','Prefiere otro lote o una familia distinta antes de volver a leguminosas; revisa enfermedades del cultivo anterior.',a.previous,false);
+ else if (root && includes('previous','Raíces')) add('rotation','🔄','Rotación','warn','Identifica la familia','Confirma qué raíz se cultivó: zanahoria, remolacha y papa son de familias diferentes. Evita repetir la misma familia si hay riesgo sanitario.',a.previous,false);
+ else if (includes('previous','Hortalizas') || includes('previous','Varios')) add('rotation','🔄','Rotación','warn','Precisar cultivo anterior','Identifica las especies previas y evita repetir la misma familia. “Hoja” o “fruto” no identifica una familia botánica.',a.previous,false);
+ else add('rotation','🔄','Rotación','good',includes('previous','Leguminosas') || includes('previous','Raíces') ? 'Cambio de familia posible' : 'Revisar historial del lote','Registra las familias cultivadas y problemas sanitarios; el descanso por sí solo no demuestra fertilidad ni elimina enfermedades.',a.previous,false);
+ if (unknown('rain')) add('rain','🌧️','Lluvias','unknown','Lluvias sin confirmar','Consulta registros o pronósticos locales para ajustar el riego y la época de siembra.',a.rain,false);
+ else if (includes('rain','abundantes')) add('rain','🌧️','Lluvias','warn','Vigilar exceso de agua','Reduce o suspende riego si el suelo está húmedo y revisa drenaje después de lluvias fuertes.',a.rain,false);
+ else if (includes('rain','escasas') || includes('rain','irregulares')) add('rain','🌧️','Lluvias','warn','Planificar días secos','Ajusta el riego a la humedad real y asegura respaldo de agua antes de establecer el cultivo.',a.rain,false);
+ else add('rain','🌧️','Lluvias','good','Patrón habitual reportado','El patrón reciente no garantiza lluvia futura; consulta el pronóstico al programar la siembra.',a.rain,false);
+ const blockers = factors.filter(f => f.state === 'bad');
+ const missing = factors.filter(f => f.state === 'unknown' && f.essential);
+ const cautions = factors.filter(f => f.state === 'warn');
+ const status = blockers.length ? 'bad' : missing.length ? 'unknown' : cautions.length ? 'warn' : 'good';
+ return {factors,blockers,missing,cautions,status};
+}
+function verdict(r) {
+ const c = crops[cropKey];
+ const labels = {good:'Apto de forma preliminar',warn:'Apto con ajustes',bad:'No apto por ahora',unknown:'Faltan datos para decidir'};
+ const icons = {good:'🌱',warn:'🛠️',bad:'⛔',unknown:'🔎'};
+ const messages = {
+  good:`Lo que reportaste es compatible con ${c.name.toLowerCase()}. Confirma variedad, época y análisis de suelo antes de sembrar.`,
+  warn:`${c.name} podría funcionar si atiendes los ajustes indicados. No es una autorización automática para sembrar.`,
+  bad:`No recomendamos iniciar ${c.name.toLowerCase()} en las condiciones reportadas. Resuelve las limitaciones y vuelve a evaluar.`,
+  unknown:`No podemos confirmar la aptitud para ${c.name.toLowerCase()} sin las observaciones marcadas como “Confirmar”.`
+ };
+ return `<div class="verdict ${r.status}"><div class="verdict-top"><span class="verdict-icon" aria-hidden="true">${icons[r.status]}</span><div><div class="eyebrow">Resultado del terreno · ${c.name}</div><h2>${labels[r.status]}</h2></div></div><p>${messages[r.status]}</p><span class="pill">${r.blockers.length} limitaciones · ${r.cautions.length} ajustes · ${r.missing.length} datos clave pendientes</span></div>`;
+}
+function summary() {
+ return `<section class="summary" aria-label="Resumen de las respuestas sobre el terreno"><h3>📋 Tu terreno · resumen</h3><div class="summary-grid">${questionList.map(q => { const answer = answers[q.key] || 'Sin responder'; return `<div class="summary-item"><span>${q.icon} ${q.title}</span><b title="${escapeHTML(answer)}">${escapeHTML(answer)}</b></div>`; }).join('')}</div></section>`;
+}
+function factorCard(f) {
+ return `<details class="factor ${f.state}"><summary><span class="factor-icon" aria-hidden="true">${f.icon}</span><b>${f.title}</b><span class="state">${stateLabels[f.state]}</span><small>${f.label} · Ver por qué +</small></summary><div class="factor-body"><p class="evidence"><b>Tu respuesta:</b> ${escapeHTML(f.evidence || 'Sin responder')}</p><p>${f.action}</p></div></details>`;
+}
+function taskCard(icon,title,text) {
+ return `<div class="task"><span class="task-icon" aria-hidden="true">${icon}</span><div><b>${title}</b><p>${text}</p></div></div>`;
+}
+function showResults() {
+ screen = 'results';
+ const r = assess(cropKey,answers);
+ setHeader('Diagnóstico de tu terreno','Basado en tus respuestas, no en mediciones','Paso 3 de 4',82);
+ const important = [...r.blockers,...r.missing,...r.cautions].slice(0,3);
+ content.innerHTML = `${verdict(r)}<h3 class="section-label">Tu terreno de un vistazo</h3><p class="legend">Toca cada indicador para ver tu respuesta y la recomendación. El color no representa una medición de laboratorio.</p><div class="factor-grid">${r.factors.map(factorCard).join('')}</div><h3 class="section-label">${r.status === 'bad' ? 'Antes de pensar en sembrar' : r.status === 'unknown' ? 'Primero confirma estos datos' : 'Tus próximos pasos'}</h3><div class="task-list">${important.length ? important.map(f => taskCard(f.icon,f.label,f.action)).join('') : taskCard('🧪','Validar antes de iniciar','Solicita un análisis de suelo y confirma la variedad y la época de siembra con orientación local.')}</div><div class="actions"><button class="btn" id="toPlan">${r.status === 'bad' || r.status === 'unknown' ? 'Ver preparación y opciones →' : 'Ver mi plan de siembra →'}</button></div>${summary()}<p class="notice">Evaluación orientativa: no garantiza una cosecha. Faltan mediciones de pH, nutrientes, profundidad útil y sanidad del suelo. La ubicación que escribiste no se usa para inferir clima ni consultar datos externos.</p>`;
+ $('toPlan').onclick = () => { phase = 'before'; showPlan(); };
+ focusContent();
+}
+function priorityTask() {
+ const p = answers.priority || '';
+ if (p.includes('Ahorrar')) return 'Prioriza riego eficiente y cobertura entre líneas, sin cubrir semillas ni coronas. Revisa humedad antes de regar.';
+ if (p.includes('fertilidad')) return 'Prioriza análisis de suelo, compost maduro según resultados y rotación. Las leguminosas no garantizan un aporte de nitrógeno sin nodulación efectiva.';
+ if (p.includes('pronto')) return 'Consulta el ciclo de una variedad local y empieza con un área de prueba; no aceleres la siembra si faltan agua, drenaje o temperatura adecuados.';
+ if (p.includes('largo plazo')) return 'Registra familias y sanidad del lote, conserva cobertura y evita la compactación.';
+ return 'Equilibra agua, nutrición y cobertura; ajusta el manejo con observaciones del suelo y del cultivo.';
+}
+function phaseTasks(r, selectedPhase) {
+ const c = crops[cropKey];
+ if (selectedPhase === 'before') {
+  const tasks = r.factors.filter(f => f.state !== 'good').map(f => ({id:'fix-'+f.key,text:f.action}));
+  tasks.push({id:'soil-test',text:'Revisa pH, nutrientes, materia orgánica y sanidad con análisis y apoyo local; ajusta enmiendas según resultados.'});
+  tasks.push({id:'local-variety',text:'Confirma variedad, época de siembra y temperatura con orientación local. No se deducen de tu ubicación escrita.'});
+  if (cropKey === 'bean') tasks.push({id:'bean-type',text:answers.specific === 'Frijol de enredadera' ? 'Prepara tutores o espaldera antes de sembrar el frijol de enredadera.' : answers.specific === 'Frijol arbustivo' ? 'Reserva el espacio indicado para tu frijol arbustivo; normalmente no necesita espaldera.' : 'Confirma si tu variedad de frijol es arbustiva o trepadora para definir espacio y soporte.'});
+  tasks.push({id:'priority',text:priorityTask()});
+  return tasks;
+ }
+ if (selectedPhase === 'sow') return [
+  {id:'sow-method',text:c.sow},
+  {id:'seed-quality',text:'Usa semillas sanas y sigue las indicaciones de profundidad, separación y época de la variedad. Empieza con un lote pequeño si las condiciones son inciertas.'},
+  {id:'sow-water',text:'Humedece la cama para germinación sin formar charcos. Comprueba antes que tengas agua para el establecimiento.'}
+ ];
+ if (selectedPhase === 'care') return [
+  {id:'crop-care',text:c.care},
+  {id:'care-water',text:r.factors.find(f => f.key === 'water').action},
+  {id:'care-rain',text:r.factors.find(f => f.key === 'rain').action},
+  {id:'care-cover',text:'Controla malezas y coloca cobertura entre líneas cuando las plantas estén establecidas; no tapes plántulas ni acumules material contra tallos.'},
+  {id:'care-health',text:'Observa plagas y enfermedades con frecuencia. Si hay síntomas, pide identificación local antes de aplicar productos.'}
+ ];
+ const recent = (answers.last || '').includes('menos de 1');
+ const noRest = answers.rest === 'No ha descansado';
+ return [
+  {id:'harvest',text:'Cosecha en el punto recomendado para tu variedad. Registra rendimiento, problemas sanitarios y uso de agua para ajustar la siguiente siembra.'},
+  {id:'residues',text:'Mantén cobertura con residuos sanos cuando sea apropiado. Separa plantas enfermas y consulta cómo manejarlas; no las incorpores ni uses como compost sin un tratamiento validado.'},
+  {id:'after-soil',text:'Revisa humedad, estructura y fertilidad antes del siguiente ciclo; no supongas que la cosecha o un descanso reponen todos los nutrientes.'},
+  {id:'after-rest',text:noRest || recent ? 'Como reportaste poco tiempo entre ciclos o falta de descanso, revisa compactación y sanidad antes de repetir. El descanso puede hacerse con cobertura; no hay una duración universal.' : 'Define descanso o cobertura según clima, malezas y sanidad del lote. Haber descansado no confirma que el suelo se haya recuperado.'},
+  {id:'after-family',text:cropKey === 'pea' || cropKey === 'bean' ? 'Alterna con otra familia: no pongas arveja inmediatamente después de frijol ni al revés. El nitrógeno disponible después depende de nodulación, residuos y manejo.' : 'Elige otra familia botánica para el siguiente ciclo. Zanahoria y remolacha pertenecen a familias diferentes; “raíz” no es una familia.'}
+ ];
+}
+function rotationOptions() {
+ const legume = cropKey === 'pea' || cropKey === 'bean';
+ const candidates = legume ? ['carrot','beet'] : ['pea','bean'];
+ const climate = cropKey === 'pea' ? answers.specific : answers.climate;
+ const warm = /[Cc]álida/.test(climate || '');
+ const cold = /heladas o frío/.test(climate || '');
+ const known = climate && !climate.includes('No estoy seguro');
+ const waterRisk = answers.water === 'Muy escasa';
+ const drainageRisk = (answers.drainage || '').includes('charcos');
+ return candidates.map(id => {
+  let condition = 'Confirma suelo suelto, profundidad, luz, agua y temporada adecuada.';
+  if (id === 'pea') condition = warm ? 'Solo en una futura temporada fresca; no es la opción para el calor reportado.' : 'Opción para temporada fresca, con agua suficiente y buen drenaje.';
+  if (id === 'bean') condition = cold ? 'Solo después de las heladas y con suelo cálido para la variedad.' : 'Opción para temporada sin heladas y con temperatura adecuada a la variedad.';
+  if (legume && warm) condition += ' En el calor reportado, confirma tolerancia de la variedad o espera una temporada más fresca.';
+  if (!known) condition += ' Aún falta confirmar la temperatura.';
+  if (waterRisk || drainageRisk) condition += ' Primero resuelve los problemas actuales de agua o drenaje.';
+  return {id,condition};
+ });
+}
+function showPlan() {
+ screen = 'plan';
+ const r = assess(cropKey,answers);
+ setHeader('Tu plan de siembra',`Preparación, manejo y siguiente ciclo de ${crops[cropKey].name.toLowerCase()}`,'Paso 4 de 4',100);
+ const phases = [{id:'before',name:'🛠️ Preparar'},{id:'sow',name:'🌱 Sembrar'},{id:'care',name:'💧 Cuidar'},{id:'after',name:'🔄 Después'}];
+ content.innerHTML = `${verdict(r)}${chosen()}<div class="tabs" role="tablist" aria-label="Etapas del plan">${phases.map(p => `<button class="tab" id="tab-${p.id}" role="tab" aria-selected="${phase === p.id}" aria-controls="phasePanel" tabindex="${phase === p.id ? 0 : -1}" data-phase="${p.id}">${p.name}</button>`).join('')}</div><div class="phase-panel" id="phasePanel" role="tabpanel" aria-labelledby="tab-${phase}" tabindex="0"></div>${summary()}<p class="nasa"><strong>🛰️ Próximo paso: datos NASA</strong><br>Una futura versión podría añadir observaciones de precipitación, temperatura y vegetación, junto con información local del suelo. Esta demo no consulta datos satelitales en tiempo real.</p><div class="actions"><button class="btn" id="again">Evaluar otro cultivo ↻</button><button class="btn alt" id="diagnosis">Volver al diagnóstico</button></div><p class="notice">Prototipo educativo. La aptitud y las opciones de rotación requieren validación local. Las casillas son una lista de seguimiento: marcarlas no cambia el diagnóstico. No se guardan al cerrar o recargar la página.</p>`;
+ document.querySelectorAll('[data-phase]').forEach((button,index) => {
+  button.onclick = () => selectPhase(button.dataset.phase,r);
+  button.onkeydown = event => {
+   const keys = ['ArrowRight','ArrowLeft','Home','End'];
+   if (!keys.includes(event.key)) return;
+   event.preventDefault();
+   const next = event.key === 'Home' ? 0 : event.key === 'End' ? phases.length-1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + phases.length) % phases.length;
+   selectPhase(phases[next].id,r);
+   $('tab-'+phases[next].id).focus();
+  };
+ });
+ $('again').onclick = chooseCrop;
+ $('diagnosis').onclick = showResults;
+ renderPhase(r);
+ focusContent();
+}
+function selectPhase(id,r) {
+ phase = id;
+ document.querySelectorAll('[data-phase]').forEach(button => {
+  button.setAttribute('aria-selected',button.dataset.phase === phase);
+  button.tabIndex = button.dataset.phase === phase ? 0 : -1;
+ });
+ $('phasePanel').setAttribute('aria-labelledby','tab-'+phase);
+ renderPhase(r);
+}
+function renderPhase(r) {
+ const titles = {before:'Prepara tu terreno',sow:'Así podrías sembrar',care:'Cuida tu cultivo',after:'Después de la cosecha'};
+ const gated = (r.status === 'bad' || r.status === 'unknown') && (phase === 'sow' || phase === 'care');
+ const tasks = phaseTasks(r,phase);
+ const remaining = tasks.filter(t => !completed.has(t.id)).length;
+ $('phasePanel').innerHTML = `<h3>${titles[phase]}</h3>${gated ? `<div class="notice" style="margin:0 0 14px"><b>${r.status === 'bad' ? '⛔ No inicies todavía.' : '🔎 Primero confirma la aptitud.'}</b> Estas instrucciones son para cuando resuelvas las limitaciones y vuelvas a evaluar tus respuestas.</div>` : `<p class="sub">${phase === 'before' ? 'Resuelve lo indicado y confirma las condiciones antes de iniciar.' : phase === 'after' ? 'Cuida el suelo y prepara una rotación de otra familia.' : 'Guía orientativa: adapta el manejo a tu variedad y región.'}</p>`}<div class="check-progress" id="checkProgress" role="status">${tasks.length-remaining} de ${tasks.length} tareas marcadas</div>${tasks.map(t => `<label class="check-item"><input type="checkbox" data-task="${t.id}" ${completed.has(t.id) ? 'checked' : ''}><span>${t.text}</span></label>`).join('')}${phase === 'after' ? `<h3 class="section-label">¿Qué sembrar después?</h3><p class="sub">Opciones para explorar, no aptitud confirmada. Reevalúa el lote tras cosechar: sus condiciones pueden cambiar.</p><div class="rotation-grid">${rotationOptions().map(option => `<div class="rotation-card"><span class="emoji" aria-hidden="true">${crops[option.id].avatar}</span><b>${crops[option.id].name}</b><p>${option.condition}</p><small>Familia: ${crops[option.id].family} · Distinta a ${crops[cropKey].family}</small></div>`).join('')}</div>` : ''}${phase === 'before' && (r.status === 'bad' || r.status === 'unknown') ? `<div class="notice"><b>Si no puedes corregirlo:</b> con sombra, busca otra zona; con cama compacta o pedregosa, valora una cama elevada; sin agua suficiente, pospón la siembra; con clima inadecuado, cambia de temporada. Otro cultivo no elimina por sí solo el problema.</div><div class="actions"><button class="btn alt" id="updateConditions">Corregir mis respuestas →</button></div>` : ''}`;
+ document.querySelectorAll('[data-task]').forEach(input => input.onchange = () => {
+  if (input.checked) completed.add(input.dataset.task); else completed.delete(input.dataset.task);
+  $('checkProgress').textContent = `${tasks.filter(t => completed.has(t.id)).length} de ${tasks.length} tareas marcadas`;
+ });
+ if ($('updateConditions')) $('updateConditions').onclick = () => { qIndex = 0; renderQuestion(); };
+}
+function goBack() {
+ if (screen === 'crop') welcome();
+ else if (screen === 'questions') {
+  if (qIndex > 0) { qIndex--; renderQuestion(); } else chooseCrop();
+ } else if (screen === 'results') { qIndex = questionList.length-1; renderQuestion(); }
+ else if (screen === 'plan') showResults();
+}
+$('backBtn').onclick = goBack;
+$('restartBtn').onclick = () => { cropKey = null; answers = {}; completed.clear(); welcome(); };
+welcome();
+</script>
+</body>
+</html>
+```
