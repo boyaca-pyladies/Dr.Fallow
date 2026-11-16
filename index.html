@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dr. Fallow — Cultivar con inteligencia</title>
+<link
+  rel="icon"
+  type="image/png"
+  href="https://raw.githubusercontent.com/boyaca-pyladies/Dr.Fallow/main/Logo%20Dr.%20Fallow%20sin%20letras.png"
+>
 <style>
 :root{--forest:#285b45;--leaf:#76a878;--mint:#e7f2e7;--ink:#27382e;--muted:#596c60;--line:#e1e8dc;--gold:#936016;--red:#963e36}
 *{box-sizing:border-box}
@@ -21,6 +26,68 @@ h2{font-size:25px;color:var(--forest);margin:5px 0 9px}h3{color:var(--forest);fo
 @media(max-width:800px){.shell{padding:12px}.app{grid-template-columns:1fr}.side{padding:12px}.doctor{display:flex;align-items:center;text-align:left;gap:13px;padding:10px}.doctor-art{width:60px;height:60px;flex:0 0 60px;border-radius:20px;font-size:36px}.doctor h2{font-size:15px;margin:0 0 4px}.doctor p{font-size:11px}.side-label{margin:12px 0 7px}.steps{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.step{flex-direction:column;font-size:9px;gap:5px;text-align:center}.side-tip{display:none}.main{min-height:600px}.content{padding:18px}.top-tag{display:none}.factor-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.crop-card{padding:12px;gap:10px}.crop-avatar{width:54px;height:54px;flex-basis:54px;font-size:35px}.crop-card b{font-size:14px}.verdict{padding:17px}.verdict h2{font-size:21px}.footerbar{padding:12px}.footerbar small{display:none}.reply-area{margin-left:0}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:390px){.crop-grid,.rotation-grid{grid-template-columns:1fr}.brand p{font-size:10px}.text-entry{flex-wrap:wrap}.text-entry input{flex-basis:100%}.tab{flex-basis:40%}.summary{padding:10px}.summary-grid{gap:5px}.summary-item{padding:7px}.verdict-icon{font-size:35px;flex-basis:40px}}
 @media(prefers-reduced-motion:reduce){.progress span{transition:none}}
+.crop-avatar,
+.chosen-avatar {
+  overflow: hidden;
+}
+
+.crop-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+.msg .msg-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  flex: 0 0 32px;
+  overflow: hidden;
+}
+
+.msg-icon .crop-image {
+  display: block;
+  width: 32px;
+  height: 32px;
+  max-width: 32px;
+  max-height: 32px;
+  object-fit: cover;
+}
+.reply-area .eyebrow .crop-image {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+  vertical-align: middle;
+}
+.crop-avatar .crop-image,
+.chosen-avatar .crop-image,
+.msg-icon .crop-image,
+.reply-area .eyebrow .crop-image,
+.rotation-card .crop-image {
+  object-fit: contain;
+  object-position: center;
+  padding: 3px;
+  border-radius: 0;
+}
+.brandmark,
+.doctor-art,
+.hero-art {
+  overflow: hidden;
+  background: transparent;
+}
+
+.brandmark img,
+.doctor-art img,
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 </style>
 </head>
 <body>
@@ -47,19 +114,189 @@ h2{font-size:25px;color:var(--forest);margin:5px 0 9px}h3{color:var(--forest);fo
 </main>
 </div>
 </div>
+<style>
+.team-section {
+  max-width: 1076px;
+  margin: 24px auto;
+  padding: 24px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 25px;
+  color: var(--ink);
+}
+
+.team-section h2 {
+  margin-top: 0;
+  color: var(--forest);
+}
+
+.team-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.team-photo {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  border-radius: 16px;
+  background: #f4f7ef;
+}
+
+.team-members {
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.team-document {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+}
+
+.team-video {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 16px;
+  background: #172b20;
+}
+
+@media (max-width: 800px) {
+  .team-section {
+    margin: 20px 12px;
+    padding: 18px;
+  }
+
+  .team-layout {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<section class="team-section" aria-labelledby="teamTitle">
+  <h2 id="teamTitle">👥 Nuestro equipo</h2>
+
+  <p>
+    Dr. Fallow fue creado por un equipo comprometido con
+    la tecnología, la agricultura y el cuidado del suelo.
+  </p>
+<div class="team-layout">
+  <div>
+    <img
+      class="team-photo"
+      src="https://drive.google.com/thumbnail?id=1ssI44ohOMll6n0ZtQf5UfASYnJE5A-gR&sz=w1200"
+      alt="Equipo creador de Dr. Fallow"
+      loading="lazy"
+    >
+
+    
+</div>
+<div>
+	<h3 style="margin-top: 18px;">Integrantes</h3>
+    <ul class="team-members">
+      <li><strong>Juliana Cano Vega</strong> — Líder y mentora</li>
+      <li><strong>Camilo Araque</strong> — Investigador</li>
+      <li><strong>Saray Mena</strong> — Investigadora</li>
+      <li><strong>Danna Moreno</strong> — Investigadora</li>
+      <li><strong>Andres Herrera</strong> — Investigador</li>
+    </ul>
+
+    <a
+      class="btn team-document"
+      href="https://drive.google.com/file/d/1VnnnE9WdFXZDZXnJiv1js8qPwfqci3ed/view"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      📄 Ver documento del proyecto
+    </a>
+  </div>
+</div>
+</section>
 <script>
 'use strict';
-const crops = {
- carrot:{name:'Zanahoria',avatar:'🥕',friend:'Zanahorín',family:'Apiaceae',type:'Cultivo de raíz',hello:'¡Hola! Soy Zanahorín. Necesito suelo suelto, profundo y sin piedras. Conozcamos tu terreno.',specific:'¿Tu suelo está suelto o suele estar compacto?',specificOpts:['Está suelto y fácil de trabajar','Se compacta o forma terrones duros','Tiene muchas piedras','No estoy seguro'],sow:'Siembra directamente en una cama fina y sin piedras. Sigue la profundidad y separación de tu variedad; evita trasplantar.',care:'Aclara las plantas cuando se establezcan y mantén humedad uniforme. Evita estiércol fresco y compactar la cama.'},
- pea:{name:'Arveja',avatar:'🫛',friend:'Arvejita',family:'Fabaceae',type:'Leguminosa',hello:'¡Hola! Soy Arvejita. Prefiero una temporada fresca y un suelo que no se encharque.',specific:'¿Tu zona suele tener temperaturas frescas durante la temporada de cultivo?',specificOpts:['Sí, suele ser fresca','Es templada','Es cálida','No estoy seguro'],sow:'Siembra directamente en temporada fresca, según tu variedad. Instala soporte si es trepadora; respeta el espacio indicado en el envase.',care:'Cuida la humedad durante floración y formación de vainas. La fijación de nitrógeno requiere nodulación efectiva; no sustituye un análisis de suelo.'},
- beet:{name:'Remolacha',avatar:'🫜',friend:'Remolachín',family:'Amaranthaceae',type:'Cultivo de raíz',hello:'¡Hola! Soy Remolachín. Necesito suelo suelto, buena luz y humedad uniforme.',specific:'¿Cómo está preparado el terreno para desarrollar raíces?',specificOpts:['Está suelto y profundo','Está algo compacto','Tiene piedras o terrones','No estoy seguro'],sow:'Siembra directamente en suelo suelto. Aclara las plántulas si nacen agrupadas; usa la separación y profundidad de tu variedad.',care:'Mantén humedad uniforme para favorecer raíces de buena calidad y evita trabajar el suelo mojado.'},
- bean:{name:'Frijol',avatar:'🫘',friend:'Frijolito',family:'Fabaceae',type:'Leguminosa',hello:'¡Hola! Soy Frijolito. Me gusta una temporada sin heladas, el sol y un buen drenaje.',specific:'¿Qué tipo de frijol quieres sembrar o conoces?',specificOpts:['Frijol arbustivo','Frijol de enredadera','Una variedad local','Todavía no lo sé'],sow:'Siembra directamente cuando haya pasado el riesgo de heladas y el suelo esté suficientemente cálido para tu variedad.',care:'Vigila la humedad en floración y llenado de vainas. Evita mojar el follaje de forma prolongada y revisa la presencia de plagas.'}
+const crops = {	
+  carrot: {
+    name: 'Zanahoria',
+    avatar: '<img class="crop-image" src="https://raw.githubusercontent.com/boyaca-pyladies/Dr.Fallow/main/zanahoria.png" alt="">',
+    friend: 'Zanahorín',
+    family: 'Apiaceae',
+    type: 'Cultivo de raíz',
+    hello: '¡Hola! Soy Zanahorín. Necesito suelo suelto, profundo y sin piedras. Conozcamos tu terreno.',
+    specific: '¿Tu suelo está suelto o suele estar compacto?',
+    specificOpts: [
+      'Está suelto y fácil de trabajar',
+      'Se compacta o forma terrones duros',
+      'Tiene muchas piedras',
+      'No estoy seguro'
+    ],
+    sow: 'Siembra directamente en una cama fina y sin piedras. Sigue la profundidad y separación de tu variedad; evita trasplantar.',
+    care: 'Aclara las plantas cuando se establezcan y mantén humedad uniforme. Evita estiércol fresco y compactar la cama.'
+  },
+
+  pea: {
+    name: 'Arveja',
+    avatar: '<img class="crop-image" src="https://raw.githubusercontent.com/boyaca-pyladies/Dr.Fallow/main/arverja.png" alt="">',
+    friend: 'Arvejita',
+    family: 'Fabaceae',
+    type: 'Leguminosa',
+    hello: '¡Hola! Soy Arvejita. Prefiero una temporada fresca y un suelo que no se encharque.',
+    specific: '¿Tu zona suele tener temperaturas frescas durante la temporada de cultivo?',
+    specificOpts: [
+      'Sí, suele ser fresca',
+      'Es templada',
+      'Es cálida',
+      'No estoy seguro'
+    ],
+    sow: 'Siembra directamente en temporada fresca, según tu variedad. Instala soporte si es trepadora; respeta el espacio indicado en el envase.',
+    care: 'Cuida la humedad durante floración y formación de vainas. La fijación de nitrógeno requiere nodulación efectiva; no sustituye un análisis de suelo.'
+  },
+
+  beet: {
+    name: 'Remolacha',
+    avatar: '<img class="crop-image" src="https://raw.githubusercontent.com/boyaca-pyladies/Dr.Fallow/main/remolacha.png" alt="">',
+    friend: 'Remolachín',
+    family: 'Amaranthaceae',
+    type: 'Cultivo de raíz',
+    hello: '¡Hola! Soy Remolachín. Necesito suelo suelto, buena luz y humedad uniforme.',
+    specific: '¿Cómo está preparado el terreno para desarrollar raíces?',
+    specificOpts: [
+      'Está suelto y profundo',
+      'Está algo compacto',
+      'Tiene piedras o terrones',
+      'No estoy seguro'
+    ],
+    sow: 'Siembra directamente en suelo suelto. Aclara las plántulas si nacen agrupadas; usa la separación y profundidad de tu variedad.',
+    care: 'Mantén humedad uniforme para favorecer raíces de buena calidad y evita trabajar el suelo mojado.'
+  },
+
+  bean: {
+    name: 'Frijol',
+    avatar: '<img class="crop-image" src="https://raw.githubusercontent.com/boyaca-pyladies/Dr.Fallow/main/frijol.jpg" alt="">',
+    friend: 'Frijolito',
+    family: 'Fabaceae',
+    type: 'Leguminosa',
+    hello: '¡Hola! Soy Frijolito. Me gusta una temporada sin heladas, el sol y un buen Absorción del agua.',
+    specific: '¿Qué tipo de frijol quieres sembrar o conoces?',
+    specificOpts: [
+      'Frijol arbustivo',
+      'Frijol de enredadera',
+      'Una variedad local',
+      'Todavía no lo sé'
+    ],
+    sow: 'Siembra directamente cuando haya pasado el riesgo de heladas y el suelo esté suficientemente cálido para tu variedad.',
+    care: 'Vigila la humedad en floración y llenado de vainas. Evita mojar el follaje de forma prolongada y revisa la presencia de plagas.'
+  }
 };
 const common = [
  {key:'location',title:'Ubicación',icon:'📍',q:'¿En qué municipio, departamento o región se encuentra tu terreno?',type:'text',hint:'Ejemplo: Sogamoso, Boyacá.'},
  {key:'size',title:'Tamaño del terreno',icon:'📐',q:'¿Qué tamaño aproximado tiene el área que quieres sembrar?',opts:['Menos de 100 m²','Entre 100 y 500 m²','Entre 500 y 1.000 m²','Más de 1.000 m²','Aún no lo sé']},
  {key:'soil',title:'Tipo de suelo',icon:'🌱',q:'¿Cómo describirías la textura de tu suelo al tocarlo?',opts:['Arcilloso: pegajoso cuando está húmedo','Arenoso: suelto y con granos','Franco: mezcla equilibrada','No estoy seguro']},
- {key:'drainage',title:'Drenaje',icon:'💧',q:'Después de una lluvia, ¿qué ocurre con el agua en tu terreno?',opts:['Se absorbe rápidamente','Permanece un rato y luego se absorbe','Se forman charcos por mucho tiempo','No lo he observado']},
+ {key:'drainage',title:'Absorción del agua',icon:'💧',q:'Después de una lluvia, ¿qué ocurre con el agua en tu terreno?',opts:['Se absorbe rápidamente','Permanece un rato y luego se absorbe','Se forman charcos por mucho tiempo','No lo he observado']},
  {key:'sun',title:'Luz solar',icon:'☀️',q:'¿Cuántas horas de sol directo recibe el terreno al día?',opts:['Menos de 4 horas','Entre 4 y 6 horas','Entre 6 y 8 horas','Más de 8 horas','No estoy seguro']},
  {key:'water',title:'Agua disponible',icon:'🚿',q:'¿Cómo es la disponibilidad de agua para el riego?',opts:['Suficiente durante todo el año','Limitada en algunas temporadas','Muy escasa','Dependo principalmente de la lluvia']},
  {key:'rain',title:'Lluvias',icon:'🌧️',q:'En los últimos meses, ¿cómo han sido las lluvias en tu zona?',opts:['Más abundantes de lo habitual','Normales para la temporada','Más escasas de lo habitual','Muy irregulares','No estoy seguro']},
@@ -94,7 +331,9 @@ function focusContent() { content.focus({preventScroll:true}); }
 function welcome() {
  screen = 'welcome';
  setHeader('Bienvenido a Dr. Fallow','Un acompañante para tus decisiones agrícolas','Inicio',0);
- content.innerHTML = `<div class="hero"><div class="hero-art" aria-hidden="true">👨‍🌾</div><div class="eyebrow">Conoce a tu asistente agrícola</div><h2>¡Cultivemos un futuro más saludable!</h2><p>Soy <b>Dr. Fallow</b>. Te ayudo a explorar si tu terreno está listo para el cultivo que quieres sembrar y cómo cuidarlo después.</p><p>Mi nombre viene de <i>fallow</i>, una práctica que permite que la tierra descanse y se recupere. Pero descansar también puede significar protegerla con coberturas vegetales y un buen manejo.</p><div class="actions"><button class="btn" id="startBtn">Comenzar mi consulta →</button></div><div class="intro-note">🌱 <b>¿Cómo funciona?</b> Elige qué quieres sembrar, conversa con tu compañero de cultivo, responde algunas preguntas sobre tu terreno y descubre su aptitud → Prepara tu siembra y rotación.</div></div>`;
+ content.innerHTML = `<div class="hero"><div class="hero-art" aria-hidden="true">
+  <img src="https://raw.githubusercontent.com/boyaca-pyladies/Dr.Fallow/main/Logo%20Dr.%20Fallow%20sin%20letras.png" alt="">
+</div><div class="eyebrow">Conoce a tu asistente agrícola</div><h2>¡Cultivemos un futuro más saludable!</h2><p>Soy <b>Dr. Fallow</b>. Te ayudo a explorar si tu terreno está listo para el cultivo que quieres sembrar y cómo cuidarlo después.</p><p>Mi nombre viene de <i>fallow</i>, una práctica que permite que la tierra descanse y se recupere. Pero descansar también puede significar protegerla con coberturas vegetales y un buen manejo.</p><div class="actions"><button class="btn" id="startBtn">Comenzar mi consulta →</button></div><div class="intro-note">🌱 <b>¿Cómo funciona?</b> Elige qué quieres sembrar, conversa con tu compañero de cultivo, responde algunas preguntas sobre tu terreno y descubre su aptitud → Prepara tu siembra y rotación.</div></div>`;
  $('startBtn').onclick = chooseCrop;
 }
 function chooseCrop() {
@@ -109,7 +348,23 @@ function selectCrop(id) {
  answers = {};
  completed = new Set();
  const c = crops[id];
- questionList = [{key:'specific',title:'Necesidades del cultivo',icon:c.avatar,q:c.specific,opts:c.specificOpts},...common];
+ const cropIcon = {
+  carrot: '🥕',
+  pea: '🫛',
+  beet: '🫜',
+  bean: '🫘'
+}[id];
+
+questionList = [
+  {
+    key: 'specific',
+    title: 'Necesidades del cultivo',
+    icon: cropIcon,
+    q: c.specific,
+    opts: c.specificOpts
+  },
+  ...common
+];
  qIndex = 0;
  renderQuestion();
 }
@@ -158,19 +413,27 @@ function assess(id, a) {
  const add = (key,icon,title,state,label,action,evidence,essential = true) => factors.push({key,icon,title,state,label,action,evidence,essential});
  let soilState = 'good', soilLabel = 'Textura equilibrada', soilAction = 'Conserva la estructura y ajusta el compost maduro según el análisis del suelo.';
  if (unknown('soil')) { soilState = 'unknown'; soilLabel = 'Textura sin confirmar'; soilAction = 'Observa la textura y solicita una revisión local de estructura y suelo.'; }
- else if (includes('soil','Arcilloso')) { soilState = 'warn'; soilLabel = 'Revisar estructura'; soilAction = 'No trabajes el suelo mojado. Comprueba compactación y drenaje; incorpora materia orgánica madura según análisis.'; }
+ else if (includes('soil','Arcilloso')) { soilState = 'warn'; soilLabel = 'Revisar estructura'; soilAction = 'No trabajes el suelo mojado. Comprueba compactación y Absorción del agua; incorpora materia orgánica madura según análisis.'; }
  else if (includes('soil','Arenoso')) { soilState = 'warn'; soilLabel = 'Pierde humedad rápido'; soilAction = 'Aporta compost maduro según análisis y usa cobertura entre líneas; revisa la humedad con más frecuencia.'; }
  add('soil','🌱','Suelo',soilState,soilLabel,soilAction,a.soil);
  if (root) {
   let state = 'good', label = 'Raíces con espacio', action = 'Prepara una cama fina sin compactarla; evita estiércol fresco.';
   if (unknown('specific')) { state = 'unknown'; label = 'Revisar profundidad'; action = 'Comprueba que la cama esté suelta y tenga profundidad útil para la variedad.'; }
   else if (/compact|piedras|terrones/i.test(a.specific)) { state = 'bad'; label = 'Cama no preparada'; action = 'Antes de sembrar, mejora la cama sin trabajarla mojada y retira piedras y terrones. Si no es posible, usa una cama elevada con suelo apto y limpio.'; }
-  add('structure',crops[id].avatar,'Cama de raíces',state,label,action,a.specific);
+  add(
+  'structure',
+  id === 'carrot' ? '🥕' : '🫜',
+  'Espacio para las raíces',
+  state,
+  label,
+  action,
+  a.specific
+);
  }
- if (unknown('drainage')) add('drainage','💧','Drenaje','unknown','Falta observar','Observa el lote después de lluvia o riego; confirma que no haya agua estancada.',a.drainage);
- else if (includes('drainage','charcos')) add('drainage','💧','Drenaje','bad','Encharcamiento','Resuelve primero el drenaje. Valora camas elevadas y manejo del agua con apoyo local; confirma que desaparecen los charcos antes de sembrar.',a.drainage);
- else if (includes('drainage','Permanece')) add('drainage','💧','Drenaje','warn','Vigilar infiltración','Revisa cuánto dura el agua acumulada; si persiste, mejora el drenaje antes de sembrar.',a.drainage);
- else add('drainage','💧','Drenaje','good','Sin charcos reportados','Comprueba que el agua llegue a las raíces sin dejar el suelo saturado.',a.drainage);
+ if (unknown('drainage')) add('drainage','💧','Absorción del agua','unknown','Falta observar','Observa el lote después de lluvia o riego; confirma que no haya agua estancada.',a.drainage);
+ else if (includes('drainage','charcos')) add('drainage','💧','Absorción del agua','bad','Encharcamiento','Resuelve primero el Absorción del agua. Valora camas elevadas y manejo del agua con apoyo local; confirma que desaparecen los charcos antes de sembrar.',a.drainage);
+ else if (includes('drainage','Permanece')) add('drainage','💧','Absorción del agua','warn','Vigilar infiltración','Revisa cuánto dura el agua acumulada; si persiste, mejora el Absorción del agua antes de sembrar.',a.drainage);
+ else add('drainage','💧','Absorción del agua','good','Sin charcos reportados','Comprueba que el agua llegue a las raíces sin dejar el suelo saturado.',a.drainage);
  if (unknown('sun')) add('sun','☀️','Luz solar','unknown','Horas sin confirmar','Observa y registra las horas de sol directo durante un día representativo.',a.sun);
  else if (includes('sun','Menos de 4')) add('sun','☀️','Luz solar','bad','Luz insuficiente','Busca un sector con más sol o reduce sombras evitables. Confirma la luz necesaria para tu variedad antes de sembrar.',a.sun);
  else if (includes('sun','4 y 6')) add('sun','☀️','Luz solar','warn','Luz moderada','Usa la zona más iluminada y confirma si esas horas son suficientes para la variedad; el rendimiento podría ser menor.',a.sun);
@@ -189,10 +452,10 @@ function assess(id, a) {
  if (!a.previous) add('rotation','🔄','Rotación','unknown','Historial sin confirmar','Identifica el último cultivo y su familia antes de decidir la rotación.',a.previous,false);
  else if (legume && includes('previous','Leguminosas')) add('rotation','🔄','Rotación','warn','Repetirías familia','Prefiere otro lote o una familia distinta antes de volver a leguminosas; revisa enfermedades del cultivo anterior.',a.previous,false);
  else if (root && includes('previous','Raíces')) add('rotation','🔄','Rotación','warn','Identifica la familia','Confirma qué raíz se cultivó: zanahoria, remolacha y papa son de familias diferentes. Evita repetir la misma familia si hay riesgo sanitario.',a.previous,false);
- else if (includes('previous','Hortalizas') || includes('previous','Varios')) add('rotation','🔄','Rotación','warn','Precisar cultivo anterior','Identifica las especies previas y evita repetir la misma familia. “Hoja” o “fruto” no identifica una familia botánica.',a.previous,false);
+ else if (includes('previous','Hortalizas') || includes('previous','Varios')) add('rotation','🔄','Rotación','warn','Precisar cultivo anterior',a.previous,false);
  else add('rotation','🔄','Rotación','good',includes('previous','Leguminosas') || includes('previous','Raíces') ? 'Cambio de familia posible' : 'Revisar historial del lote','Registra las familias cultivadas y problemas sanitarios; el descanso por sí solo no demuestra fertilidad ni elimina enfermedades.',a.previous,false);
  if (unknown('rain')) add('rain','🌧️','Lluvias','unknown','Lluvias sin confirmar','Consulta registros o pronósticos locales para ajustar el riego y la época de siembra.',a.rain,false);
- else if (includes('rain','abundantes')) add('rain','🌧️','Lluvias','warn','Vigilar exceso de agua','Reduce o suspende riego si el suelo está húmedo y revisa drenaje después de lluvias fuertes.',a.rain,false);
+ else if (includes('rain','abundantes')) add('rain','🌧️','Lluvias','warn','Vigilar exceso de agua','Reduce o suspende riego si el suelo está húmedo y revisa Absorción del agua después de lluvias fuertes.',a.rain,false);
  else if (includes('rain','escasas') || includes('rain','irregulares')) add('rain','🌧️','Lluvias','warn','Planificar días secos','Ajusta el riego a la humedad real y asegura respaldo de agua antes de establecer el cultivo.',a.rain,false);
  else add('rain','🌧️','Lluvias','good','Patrón habitual reportado','El patrón reciente no garantiza lluvia futura; consulta el pronóstico al programar la siembra.',a.rain,false);
  const blockers = factors.filter(f => f.state === 'bad');
@@ -228,15 +491,16 @@ function showResults() {
  setHeader('Diagnóstico de tu terreno','Basado en tus respuestas, no en mediciones','Paso 3 de 4',82);
  const important = [...r.blockers,...r.missing,...r.cautions].slice(0,3);
  content.innerHTML = `${verdict(r)}<h3 class="section-label">Tu terreno de un vistazo</h3><p class="legend">Toca cada indicador para ver tu respuesta y la recomendación. El color no representa una medición de laboratorio.</p><div class="factor-grid">${r.factors.map(factorCard).join('')}</div><h3 class="section-label">${r.status === 'bad' ? 'Antes de pensar en sembrar' : r.status === 'unknown' ? 'Primero confirma estos datos' : 'Tus próximos pasos'}</h3><div class="task-list">${important.length ? important.map(f => taskCard(f.icon,f.label,f.action)).join('') : taskCard('🧪','Validar antes de iniciar','Solicita un análisis de suelo y confirma la variedad y la época de siembra con orientación local.')}</div><div class="actions"><button class="btn" id="toPlan">${r.status === 'bad' || r.status === 'unknown' ? 'Ver preparación y opciones →' : 'Ver mi plan de siembra →'}</button></div>${summary()}<p class="notice">Evaluación orientativa: no garantiza una cosecha. Faltan mediciones de pH, nutrientes, profundidad útil y sanidad del suelo. La ubicación que escribiste no se usa para inferir clima ni consultar datos externos.</p>`;
- $('toPlan').onclick = () => { phase = 'before'; showPlan(); };
- focusContent();
+$('toPlan').onclick = () => { phase = 'before'; showPlan(); };
+window.scrollTo({ top: 0, behavior: 'smooth' });
+focusContent();
 }
 function priorityTask() {
  const p = answers.priority || '';
  if (p.includes('Ahorrar')) return 'Prioriza riego eficiente y cobertura entre líneas, sin cubrir semillas ni coronas. Revisa humedad antes de regar.';
  if (p.includes('fertilidad')) return 'Prioriza análisis de suelo, compost maduro según resultados y rotación. Las leguminosas no garantizan un aporte de nitrógeno sin nodulación efectiva.';
- if (p.includes('pronto')) return 'Consulta el ciclo de una variedad local y empieza con un área de prueba; no aceleres la siembra si faltan agua, drenaje o temperatura adecuados.';
- if (p.includes('largo plazo')) return 'Registra familias y sanidad del lote, conserva cobertura y evita la compactación.';
+ if (p.includes('pronto')) return 'Consulta el ciclo de una variedad local y empieza con un área de prueba; no aceleres la siembra si faltan agua, Absorción del agua o temperatura adecuados.';
+ if (p.includes('largo plazo'))
  return 'Equilibra agua, nutrición y cobertura; ajusta el manejo con observaciones del suelo y del cultivo.';
 }
 function phaseTasks(r, selectedPhase) {
@@ -264,11 +528,9 @@ function phaseTasks(r, selectedPhase) {
  const recent = (answers.last || '').includes('menos de 1');
  const noRest = answers.rest === 'No ha descansado';
  return [
-  {id:'harvest',text:'Cosecha en el punto recomendado para tu variedad. Registra rendimiento, problemas sanitarios y uso de agua para ajustar la siguiente siembra.'},
-  {id:'residues',text:'Mantén cobertura con residuos sanos cuando sea apropiado. Separa plantas enfermas y consulta cómo manejarlas; no las incorpores ni uses como compost sin un tratamiento validado.'},
-  {id:'after-soil',text:'Revisa humedad, estructura y fertilidad antes del siguiente ciclo; no supongas que la cosecha o un descanso reponen todos los nutrientes.'},
-  {id:'after-rest',text:noRest || recent ? 'Como reportaste poco tiempo entre ciclos o falta de descanso, revisa compactación y sanidad antes de repetir. El descanso puede hacerse con cobertura; no hay una duración universal.' : 'Define descanso o cobertura según clima, malezas y sanidad del lote. Haber descansado no confirma que el suelo se haya recuperado.'},
-  {id:'after-family',text:cropKey === 'pea' || cropKey === 'bean' ? 'Alterna con otra familia: no pongas arveja inmediatamente después de frijol ni al revés. El nitrógeno disponible después depende de nodulación, residuos y manejo.' : 'Elige otra familia botánica para el siguiente ciclo. Zanahoria y remolacha pertenecen a familias diferentes; “raíz” no es una familia.'}
+  {id:'harvest',text:'Registra la cantidad cosechada y los problemas que se presentaron.'},
+  {id:'residues',text:'Retira las plantas enfermas y conserva los residuos vegetales sanos como cobertura del suelo.'},
+  {id:'after-soil',text:'Revisa la humedad y fertilidad del suelo, y rota el cultivo antes de volver a sembrar.'}
  ];
 }
 function rotationOptions() {
@@ -282,11 +544,11 @@ function rotationOptions() {
  const drainageRisk = (answers.drainage || '').includes('charcos');
  return candidates.map(id => {
   let condition = 'Confirma suelo suelto, profundidad, luz, agua y temporada adecuada.';
-  if (id === 'pea') condition = warm ? 'Solo en una futura temporada fresca; no es la opción para el calor reportado.' : 'Opción para temporada fresca, con agua suficiente y buen drenaje.';
+  if (id === 'pea') condition = warm ? 'Solo en una futura temporada fresca; no es la opción para el calor reportado.' : 'Opción para temporada fresca, con agua suficiente y buen Absorción del agua.';
   if (id === 'bean') condition = cold ? 'Solo después de las heladas y con suelo cálido para la variedad.' : 'Opción para temporada sin heladas y con temperatura adecuada a la variedad.';
   if (legume && warm) condition += ' En el calor reportado, confirma tolerancia de la variedad o espera una temporada más fresca.';
   if (!known) condition += ' Aún falta confirmar la temperatura.';
-  if (waterRisk || drainageRisk) condition += ' Primero resuelve los problemas actuales de agua o drenaje.';
+  if (waterRisk || drainageRisk) condition += ' Primero resuelve los problemas actuales de agua o Absorción del agua.';
   return {id,condition};
  });
 }
@@ -307,10 +569,11 @@ function showPlan() {
    $('tab-'+phases[next].id).focus();
   };
  });
- $('again').onclick = chooseCrop;
- $('diagnosis').onclick = showResults;
- renderPhase(r);
- focusContent();
+$('again').onclick = chooseCrop;
+$('diagnosis').onclick = showResults;
+renderPhase(r);
+window.scrollTo({ top: 0, behavior: 'smooth' });
+focusContent();
 }
 function selectPhase(id,r) {
  phase = id;
@@ -344,6 +607,544 @@ $('backBtn').onclick = goBack;
 $('restartBtn').onclick = () => { cropKey = null; answers = {}; completed.clear(); welcome(); };
 welcome();
 </script>
+<script>
+(() => {
+  'use strict';
+
+  let language = 'en';
+
+  const translations = [
+	['👥 Nuestro equipo', '👥 Our Team'],
+['Dr. Fallow fue creado por un equipo comprometido con la tecnología, la agricultura y el cuidado del suelo.', 'Dr. Fallow was created by a team committed to technology, agriculture, and soil health.'],
+['Integrantes', 'Team Members'],
+['Equipo creador de Dr. Fallow', 'The team behind Dr. Fallow'],
+['Líder y mentora', 'Team Lead and Mentor'],
+['Investigador', 'Researcher'],
+['Investigadora', 'Researcher'],
+['📄 Ver documento del proyecto', '📄 View Project Document'],
+    ['Cultivar con inteligencia · Cuidar el suelo para el futuro', 'Grow smarter · Care for the soil for the future'],
+    ['Cultivar con inteligencia', 'Grow smarter'],
+    ['PROTOTIPO INTERACTIVO', 'INTERACTIVE PROTOTYPE'],
+    ['Tu asistente para elegir tu cultivo de hortalizas 🥕🫜🫘🫛 y cuidar la salud del suelo.', 'Your assistant for choosing vegetable crops 🥕🫜🫘🫛 and caring for soil health.'],
+    ['Tu recorrido', 'Your journey'],
+    ['Bienvenida', 'Welcome'],
+    ['Elige cultivo', 'Choose a crop'],
+    ['Tu terreno', 'Your plot'],
+    ['Diagnóstico', 'Assessment'],
+    ['Plan de siembra', 'Planting plan'],
+    ['¿Sabías que…?.', 'Did you know…?'],
+    ['¿Sabías que…?', 'Did you know…?'],
+    ['Dejar descansar el suelo, mantenerlo cubierto y alternar familias de cultivos puede ayudar a conservar su salud.', 'Resting the soil, keeping it covered and rotating crop families can help maintain soil health.'],
+    ['Suelo vivo, suelo protegido.', 'Living soil, protected soil.'],
+    ['Alterna familias de cultivos y evita dejar la tierra desnuda.', 'Rotate crop families and avoid leaving soil bare.'],
+    ['Bienvenido a Dr. Fallow', 'Welcome to Dr. Fallow'],
+    ['Un acompañante para tus decisiones agrícolas', 'A companion for your farming decisions'],
+    ['Tu consulta agrícola', 'Your farming consultation'],
+    ['Inicio', 'Start'],
+    ['Progreso de la consulta', 'Consultation progress'],
+    ['Consulta y resultados', 'Consultation and results'],
+    ['Atrás', 'Back'],
+    ['Agricultura resiliente', 'Resilient agriculture'],
+    ['Reiniciar', 'Restart'],
+    ['Conoce a tu asistente agrícola', 'Meet your farming assistant'],
+    ['¡Cultivemos un futuro más saludable!', 'Let’s grow a healthier future!'],
+    ['Soy ', 'I am '],
+    ['. Te ayudo a explorar si tu terreno está listo para el cultivo que quieres sembrar y cómo cuidarlo después.', '. I help you explore whether your plot is ready for your chosen crop and how to care for it afterwards.'],
+    ['Mi nombre viene de ', 'My name comes from '],
+    [', una práctica que permite que la tierra descanse y se recupere. Pero descansar también puede significar protegerla con coberturas vegetales y un buen manejo.', ', a practice that lets the land rest and recover. Resting can also mean protecting it with cover crops and good management.'],
+    ['Comenzar mi consulta', 'Start my consultation'],
+    ['¿Cómo funciona?', 'How does it work?'],
+    ['Elige qué quieres sembrar, conversa con tu compañero de cultivo, responde algunas preguntas sobre tu terreno y descubre su aptitud', 'Choose what to grow, chat with your crop companion, answer questions about your plot and explore its suitability'],
+    ['Prepara tu siembra y rotación.', 'Plan your planting and crop rotation.'],
+    ['Tu próxima siembra', 'Your next planting'],
+    ['Elige tu cultivo', 'Choose your crop'],
+    ['Selecciona tu compañero de siembra', 'Choose your planting companion'],
+    ['¿Qué te gustaría sembrar?', 'What would you like to grow?'],
+    ['Revisaremos las necesidades de tu cultivo con tus propias respuestas.', 'We will review your crop’s needs using your answers.'],
+    ['Ver necesidades', 'View requirements'],
+    ['Cultivo de raíz', 'Root crop'],
+    ['Leguminosa', 'Legume'],
+    ['Zanahorín', 'Carrot Buddy'],
+    ['Remolachín', 'Beet Buddy'],
+    ['Arvejita', 'Pea Buddy'],
+    ['Frijolito', 'Bean Buddy'],
+    ['Zanahoria', 'Carrot'],
+    ['Remolacha', 'Beetroot'],
+    ['Arveja', 'Pea'],
+    ['Frijol', 'Bean'],
+    ['zanahoria', 'carrot'],
+    ['remolacha', 'beetroot'],
+    ['arveja', 'pea'],
+    ['frijol', 'bean'],
+    ['¡Hola! Soy Zanahorín. Necesito suelo suelto, profundo y sin piedras. Conozcamos tu terreno.', 'Hi! I am Carrot Buddy. I need deep, loose soil without stones. Let’s get to know your plot.'],
+    ['¡Hola! Soy Arvejita. Prefiero una temporada fresca y un suelo que no se encharque.', 'Hi! I am Pea Buddy. I prefer a cool growing season and soil that does not become waterlogged.'],
+    ['¡Hola! Soy Remolachín. Necesito suelo suelto, buena luz y humedad uniforme.', 'Hi! I am Beet Buddy. I need loose soil, good light and consistent moisture.'],
+    ['¡Hola! Soy Frijolito. Me gusta una temporada sin heladas, el sol y un buen Absorción del agua.', 'Hi! I am Bean Buddy. I like a frost-free season, sunshine and well-drained soil.'],
+    ['¡Hola! Soy Frijolito. Me gusta una temporada sin heladas, el sol y un buen drenaje.', 'Hi! I am Bean Buddy. I like a frost-free season, sunshine and well-drained soil.'],
+
+    ['Consulta personalizada', 'Personalized consultation'],
+    ['Con ', 'With '],
+    ['Tu conversación', 'Your conversation'],
+    ['Antes de recomendarte cómo sembrar, necesito conocer algunos detalles de tu terreno. Puedes elegir “No estoy seguro” cuando no conozcas una respuesta.', 'Before recommending how to plant, I need to know a few things about your plot. You can choose “I am not sure” if you do not know an answer.'],
+    ['Necesidades del cultivo', 'Crop requirements'],
+    ['¿Tu suelo está suelto o suele estar compacto?', 'Is your soil loose or does it tend to be compacted?'],
+    ['Está suelto y fácil de trabajar', 'It is loose and easy to work'],
+    ['Se compacta o forma terrones duros', 'It becomes compacted or forms hard clods'],
+    ['Tiene muchas piedras', 'It has many stones'],
+    ['No estoy seguro', 'I am not sure'],
+    ['¿Tu zona suele tener temperaturas frescas durante la temporada de cultivo?', 'Does your area usually have cool temperatures during the growing season?'],
+    ['Sí, suele ser fresca', 'Yes, it is usually cool'],
+    ['Es templada', 'It is mild'],
+    ['Es cálida', 'It is warm'],
+    ['¿Cómo está preparado el terreno para desarrollar raíces?', 'How is the plot prepared for root development?'],
+    ['Está suelto y profundo', 'It is loose and deep'],
+    ['Está algo compacto', 'It is somewhat compacted'],
+    ['Tiene piedras o terrones', 'It has stones or clods'],
+    ['¿Qué tipo de frijol quieres sembrar o conoces?', 'What type of bean do you want to plant or know about?'],
+    ['Frijol arbustivo', 'Bush bean'],
+    ['Frijol de enredadera', 'Climbing bean'],
+    ['Una variedad local', 'A local variety'],
+    ['Todavía no lo sé', 'I do not know yet'],
+    ['Ubicación', 'Location'],
+    ['¿En qué municipio, departamento o región se encuentra tu terreno?', 'In which town, state or region is your plot located?'],
+    ['Municipio, departamento o región', 'Town, state or region'],
+    ['Ejemplo: Sogamoso, Boyacá.', 'Example: Sogamoso, Boyacá.'],
+    ['Escribe tu respuesta…', 'Type your answer…'],
+    ['Enviar', 'Send'],
+    ['Escribe una ubicación para continuar.', 'Enter a location to continue.'],
+    ['Puedes volver atrás para corregir una respuesta. No se consultan datos externos.', 'You can go back to correct an answer. No external data is queried.'],
+    ['Tamaño del terreno', 'Plot size'],
+    ['¿Qué tamaño aproximado tiene el área que quieres sembrar?', 'Approximately how large is the area you want to plant?'],
+    ['Menos de 100 m²', 'Less than 100 m²'],
+    ['Entre 100 y 500 m²', 'Between 100 and 500 m²'],
+    ['Entre 500 y 1.000 m²', 'Between 500 and 1,000 m²'],
+    ['Más de 1.000 m²', 'More than 1,000 m²'],
+    ['Aún no lo sé', 'I do not know yet'],
+    ['Tipo de suelo', 'Soil texture'],
+    ['¿Cómo describirías la textura de tu suelo al tocarlo?', 'How would you describe your soil’s texture by touch?'],
+    ['Arcilloso: pegajoso cuando está húmedo', 'Clay: sticky when wet'],
+    ['Arenoso: suelto y con granos', 'Sandy: loose and grainy'],
+    ['Franco: mezcla equilibrada', 'Loam: a balanced mixture'],
+    ['Absorción del agua', 'Water infiltration'],
+    ['Drenaje', 'Water infiltration'],
+    ['Después de una lluvia, ¿qué ocurre con el agua en tu terreno?', 'What happens to the water on your plot after rain?'],
+    ['Se absorbe rápidamente', 'It soaks in quickly'],
+    ['Permanece un rato y luego se absorbe', 'It stays for a while and then soaks in'],
+    ['Se forman charcos por mucho tiempo', 'Puddles remain for a long time'],
+    ['No lo he observado', 'I have not observed it'],
+    ['Luz solar', 'Sunlight'],
+    ['¿Cuántas horas de sol directo recibe el terreno al día?', 'How many hours of direct sunlight does the plot receive each day?'],
+    ['Menos de 4 horas', 'Less than 4 hours'],
+    ['Entre 4 y 6 horas', 'Between 4 and 6 hours'],
+    ['Entre 6 y 8 horas', 'Between 6 and 8 hours'],
+    ['Más de 8 horas', 'More than 8 hours'],
+    ['Agua disponible', 'Water availability'],
+    ['¿Cómo es la disponibilidad de agua para el riego?', 'How available is water for irrigation?'],
+    ['Suficiente durante todo el año', 'Enough throughout the year'],
+    ['Limitada en algunas temporadas', 'Limited in some seasons'],
+    ['Muy escasa', 'Very scarce'],
+    ['Dependo principalmente de la lluvia', 'I mainly depend on rainfall'],
+    ['Lluvias', 'Rainfall'],
+    ['En los últimos meses, ¿cómo han sido las lluvias en tu zona?', 'What has rainfall been like in your area over the last few months?'],
+    ['Más abundantes de lo habitual', 'Heavier than usual'],
+    ['Normales para la temporada', 'Normal for the season'],
+    ['Más escasas de lo habitual', 'Lower than usual'],
+    ['Muy irregulares', 'Very irregular'],
+    ['Cultivo anterior', 'Previous crop'],
+    ['¿Qué se ha cultivado recientemente en ese terreno?', 'What has recently been grown on this plot?'],
+    ['Leguminosas (frijol, arveja, habas)', 'Legumes (beans, peas, broad beans)'],
+    ['Raíces (zanahoria, remolacha, papa)', 'Root and tuber crops (carrots, beetroot, potatoes)'],
+    ['Hortalizas de hoja o fruto', 'Leafy or fruiting vegetables'],
+    ['Varios cultivos / rotación', 'Several crops / crop rotation'],
+    ['Ha estado en descanso', 'It has been resting'],
+    ['Es un terreno nuevo', 'It is a new plot'],
+    ['Última siembra', 'Last planting'],
+    ['¿Hace cuánto tiempo se realizó la última siembra o cosecha?', 'How long ago was the last planting or harvest?'],
+    ['Hace menos de 1 mes', 'Less than 1 month ago'],
+    ['Entre 1 y 3 meses', 'Between 1 and 3 months'],
+    ['Entre 3 y 6 meses', 'Between 3 and 6 months'],
+    ['Hace más de 6 meses', 'More than 6 months ago'],
+    ['No lo recuerdo / terreno nuevo', 'I do not remember / new plot'],
+    ['Descanso del suelo', 'Soil resting period'],
+    ['¿El terreno ha tenido un periodo de descanso sin cultivos?', 'Has the plot had a resting period without crops?'],
+    ['Sí, menos de 1 mes', 'Yes, less than 1 month'],
+    ['Sí, entre 1 y 3 meses', 'Yes, between 1 and 3 months'],
+    ['Sí, entre 3 y 6 meses', 'Yes, between 3 and 6 months'],
+    ['Sí, más de 6 meses', 'Yes, more than 6 months'],
+    ['No ha descansado', 'It has not rested'],
+    ['Tu prioridad', 'Your priority'],
+    ['¿Qué te gustaría priorizar con esta siembra?', 'What would you like to prioritize with this planting?'],
+    ['Ahorrar agua', 'Save water'],
+    ['Mejorar la fertilidad del suelo', 'Improve soil fertility'],
+    ['Producir alimentos pronto', 'Produce food soon'],
+    ['Cuidar el suelo a largo plazo', 'Care for the soil long term'],
+    ['Un equilibrio entre todo', 'A balance of everything'],
+
+    ['Diagnóstico de tu terreno', 'Your plot assessment'],
+    ['Basado en tus respuestas, no en mediciones', 'Based on your answers, not measurements'],
+    ['Resultado del terreno', 'Plot result'],
+    ['Apto de forma preliminar', 'Preliminarily suitable'],
+    ['Apto con ajustes', 'Suitable with adjustments'],
+    ['No apto por ahora', 'Not suitable yet'],
+    ['Faltan datos para decidir', 'More information is needed'],
+    ['Lo que reportaste es compatible con ', 'Your reported conditions are compatible with '],
+    ['. Confirma variedad, época y análisis de suelo antes de sembrar.', '. Confirm the variety, growing season and soil test results before planting.'],
+    [' podría funcionar si atiendes los ajustes indicados. No es una autorización automática para sembrar.', ' could work if you address the recommended adjustments. This is not automatic clearance to plant.'],
+    ['No recomendamos iniciar ', 'We do not recommend planting '],
+    [' en las condiciones reportadas. Resuelve las limitaciones y vuelve a evaluar.', ' under the reported conditions. Resolve the limitations and reassess.'],
+    ['No podemos confirmar la aptitud para ', 'We cannot confirm suitability for '],
+    [' sin las observaciones marcadas como “Confirmar”.', ' without the observations marked “Confirm”.'],
+    [' limitaciones', ' limitations'],
+    [' ajustes', ' adjustments'],
+    [' datos clave pendientes', ' key observations pending'],
+    ['Tu terreno de un vistazo', 'Your plot at a glance'],
+    ['Toca cada indicador para ver tu respuesta y la recomendación. El color no representa una medición de laboratorio.', 'Select each indicator to view your answer and the recommendation. Colors do not represent laboratory measurements.'],
+    ['Favorable', 'Favorable'],
+    ['Ajustar', 'Adjust'],
+    ['Resolver antes', 'Resolve first'],
+    ['Confirmar', 'Confirm'],
+    ['Ver por qué', 'See why'],
+    ['Tu respuesta:', 'Your answer:'],
+    ['Suelo', 'Soil'],
+    ['Textura equilibrada', 'Balanced texture'],
+    ['Textura sin confirmar', 'Texture not confirmed'],
+    ['Revisar estructura', 'Review soil structure'],
+    ['Pierde humedad rápido', 'Loses moisture quickly'],
+    ['Espacio para las raíces', 'Room for roots'],
+    ['Raíces con espacio', 'Room for roots'],
+    ['Revisar profundidad', 'Check depth'],
+    ['Cama no preparada', 'Bed not ready'],
+    ['Falta observar', 'Observation needed'],
+    ['Encharcamiento', 'Waterlogging'],
+    ['Vigilar infiltración', 'Monitor infiltration'],
+    ['Sin charcos reportados', 'No puddles reported'],
+    ['Horas sin confirmar', 'Hours not confirmed'],
+    ['Luz insuficiente', 'Insufficient light'],
+    ['Luz moderada', 'Moderate light'],
+    ['Buena exposición', 'Good exposure'],
+    ['Disponibilidad sin confirmar', 'Availability not confirmed'],
+    ['Agua insuficiente', 'Insufficient water'],
+    ['Planificar reserva', 'Plan a water reserve'],
+    ['Dependes de lluvias', 'Dependent on rainfall'],
+    ['Riego disponible', 'Irrigation available'],
+    ['Temporada', 'Growing season'],
+    ['Época por confirmar', 'Season to be confirmed'],
+    ['Clima sin confirmar', 'Climate not confirmed'],
+    ['Arveja: esperar fresco', 'Peas: wait for cool weather'],
+    ['Validar la variedad', 'Check the variety'],
+    ['Temporada fresca reportada', 'Cool season reported'],
+    ['Rotación', 'Crop rotation'],
+    ['Historial sin confirmar', 'History not confirmed'],
+    ['Repetirías familia', 'Same crop family again'],
+    ['Identifica la familia', 'Identify the family'],
+    ['Precisar cultivo anterior', 'Identify the previous crop'],
+    ['Cambio de familia posible', 'A family change is possible'],
+    ['Revisar historial del lote', 'Review plot history'],
+    ['Lluvias sin confirmar', 'Rainfall not confirmed'],
+    ['Vigilar exceso de agua', 'Monitor excess water'],
+    ['Planificar días secos', 'Plan for dry days'],
+    ['Patrón habitual reportado', 'Usual pattern reported'],
+
+    ['Conserva la estructura y ajusta el compost maduro según el análisis del suelo.', 'Preserve soil structure and adjust mature compost applications according to soil test results.'],
+    ['Observa la textura y solicita una revisión local de estructura y suelo.', 'Observe the texture and request a local review of soil structure and condition.'],
+    ['No trabajes el suelo mojado. Comprueba compactación y Absorción del agua; incorpora materia orgánica madura según análisis.', 'Do not work wet soil. Check compaction and water infiltration; add mature organic matter according to soil test results.'],
+    ['No trabajes el suelo mojado. Comprueba compactación y drenaje; incorpora materia orgánica madura según análisis.', 'Do not work wet soil. Check compaction and drainage; add mature organic matter according to soil test results.'],
+    ['Aporta compost maduro según análisis y usa cobertura entre líneas; revisa la humedad con más frecuencia.', 'Apply mature compost according to soil test results and use mulch between rows; check moisture more frequently.'],
+    ['Prepara una cama fina sin compactarla; evita estiércol fresco.', 'Prepare a fine seedbed without compacting it; avoid fresh manure.'],
+    ['Comprueba que la cama esté suelta y tenga profundidad útil para la variedad.', 'Check that the bed is loose and deep enough for the variety.'],
+    ['Antes de sembrar, mejora la cama sin trabajarla mojada y retira piedras y terrones. Si no es posible, usa una cama elevada con suelo apto y limpio.', 'Before planting, improve the bed without working it when wet and remove stones and clods. If that is not possible, use a raised bed with suitable, clean soil.'],
+    ['Observa el lote después de lluvia o riego; confirma que no haya agua estancada.', 'Observe the plot after rain or irrigation; confirm that no standing water remains.'],
+    ['Resuelve primero el Absorción del agua. Valora camas elevadas y manejo del agua con apoyo local; confirma que desaparecen los charcos antes de sembrar.', 'Resolve water infiltration problems first. Consider raised beds and water management with local support; confirm that puddles disappear before planting.'],
+    ['Resuelve primero el drenaje. Valora camas elevadas y manejo del agua con apoyo local; confirma que desaparecen los charcos antes de sembrar.', 'Resolve drainage problems first. Consider raised beds and water management with local support; confirm that puddles disappear before planting.'],
+    ['Revisa cuánto dura el agua acumulada; si persiste, mejora el Absorción del agua antes de sembrar.', 'Check how long standing water remains; if it persists, improve infiltration and drainage before planting.'],
+    ['Revisa cuánto dura el agua acumulada; si persiste, mejora el drenaje antes de sembrar.', 'Check how long standing water remains; if it persists, improve drainage before planting.'],
+    ['Comprueba que el agua llegue a las raíces sin dejar el suelo saturado.', 'Check that water reaches the roots without saturating the soil.'],
+    ['Observa y registra las horas de sol directo durante un día representativo.', 'Observe and record direct sunlight hours on a representative day.'],
+    ['Busca un sector con más sol o reduce sombras evitables. Confirma la luz necesaria para tu variedad antes de sembrar.', 'Find a sunnier area or reduce avoidable shade. Confirm your variety’s light requirements before planting.'],
+    ['Usa la zona más iluminada y confirma si esas horas son suficientes para la variedad; el rendimiento podría ser menor.', 'Use the sunniest area and confirm whether these hours are enough for the variety; yield may be lower.'],
+    ['Conserva la exposición solar y ajusta el riego al calor y a la humedad observada.', 'Maintain sunlight exposure and adjust irrigation to heat and observed moisture.'],
+    ['Confirma una fuente de agua suficiente para establecimiento, floración y desarrollo del cultivo.', 'Confirm a sufficient water source for establishment, flowering and crop development.'],
+    ['No inicies todavía: asegura agua para las etapas críticas o espera una temporada con lluvias confiables. La cobertura no reemplaza el riego necesario.', 'Do not start yet: secure water for critical stages or wait for a season with reliable rainfall. Mulch does not replace necessary irrigation.'],
+    ['Programa la siembra cuando haya agua y valora riego eficiente y reserva disponible para los periodos secos.', 'Schedule planting when water is available and consider efficient irrigation and a reserve for dry periods.'],
+    ['Consulta el pronóstico local y la época de lluvias. Prevé agua de respaldo para días secos y etapas críticas.', 'Check the local forecast and rainy season. Plan backup water for dry days and critical stages.'],
+    ['Riega según la humedad del suelo, no por un calendario fijo; evita saturarlo.', 'Irrigate according to soil moisture, not a fixed schedule; avoid saturation.'],
+    ['La temporada y las heladas no se preguntaron ni se infieren de tu ubicación. Confírmalas con información local antes de sembrar.', 'Season and frost risk were not asked about and are not inferred from your location. Confirm them with local information before planting.'],
+    ['No preguntado; no inferido de la ubicación.', 'Not asked; not inferred from the location.'],
+    ['Confirma temperaturas, riesgo de heladas y época recomendada para la variedad con información local.', 'Use local information to confirm temperatures, frost risk and the recommended season for the variety.'],
+    ['Pospón la arveja hasta una temporada fresca o usa una zona más fresca. Una temporada cálida puede perjudicar floración y vainas.', 'Postpone peas until a cool season or use a cooler area. Warm weather can affect flowering and pod formation.'],
+    ['Comprueba temperaturas reales y tolerancia de la variedad; ajusta la época de siembra con asesoría local.', 'Check actual temperatures and variety tolerance; adjust the planting season with local advice.'],
+    ['Confirma la fecha local de siembra y el rango de temperatura de tu variedad.', 'Confirm the local planting date and temperature range for your variety.'],
+    ['Identifica el último cultivo y su familia antes de decidir la rotación.', 'Identify the last crop and its family before choosing a rotation.'],
+    ['Prefiere otro lote o una familia distinta antes de volver a leguminosas; revisa enfermedades del cultivo anterior.', 'Choose another plot or a different family before returning to legumes; check for diseases in the previous crop.'],
+    ['Confirma qué raíz se cultivó: zanahoria, remolacha y papa son de familias diferentes. Evita repetir la misma familia si hay riesgo sanitario.', 'Confirm which root or tuber crop was grown: carrots, beetroot and potatoes belong to different families. Avoid repeating a family if disease risk exists.'],
+    ['Identifica las especies previas y evita repetir la misma familia. “Hoja” o “fruto” no identifica una familia botánica.', 'Identify previous species and avoid repeating the same family. “Leafy” or “fruiting” does not identify a botanical family.'],
+    ['Registra las familias cultivadas y problemas sanitarios; el descanso por sí solo no demuestra fertilidad ni elimina enfermedades.', 'Record crop families and health problems; resting alone does not demonstrate fertility or eliminate disease.'],
+    ['Consulta registros o pronósticos locales para ajustar el riego y la época de siembra.', 'Check local records or forecasts to adjust irrigation and the planting season.'],
+    ['Reduce o suspende riego si el suelo está húmedo y revisa Absorción del agua después de lluvias fuertes.', 'Reduce or stop irrigation if the soil is wet and check infiltration and drainage after heavy rain.'],
+    ['Reduce o suspende riego si el suelo está húmedo y revisa drenaje después de lluvias fuertes.', 'Reduce or stop irrigation if the soil is wet and check drainage after heavy rain.'],
+    ['Ajusta el riego a la humedad real y asegura respaldo de agua antes de establecer el cultivo.', 'Adjust irrigation to actual moisture and secure backup water before establishing the crop.'],
+    ['El patrón reciente no garantiza lluvia futura; consulta el pronóstico al programar la siembra.', 'Recent patterns do not guarantee future rainfall; check the forecast when scheduling planting.'],
+    ['Antes de pensar en sembrar', 'Before considering planting'],
+    ['Primero confirma estos datos', 'Confirm these observations first'],
+    ['Tus próximos pasos', 'Your next steps'],
+    ['Validar antes de iniciar', 'Verify before starting'],
+    ['Solicita un análisis de suelo y confirma la variedad y la época de siembra con orientación local.', 'Request a soil test and confirm the variety and planting season with local guidance.'],
+    ['Ver preparación y opciones', 'View preparation and options'],
+    ['Ver mi plan de siembra', 'View my planting plan'],
+    ['Tu terreno · resumen', 'Your plot · summary'],
+    ['Resumen de las respuestas sobre el terreno', 'Summary of plot answers'],
+    ['Sin responder', 'Unanswered'],
+    ['Evaluación orientativa: no garantiza una cosecha. Faltan mediciones de pH, nutrientes, profundidad útil y sanidad del suelo. La ubicación que escribiste no se usa para inferir clima ni consultar datos externos.', 'This assessment is guidance only and does not guarantee a harvest. Soil pH, nutrients, usable depth and health have not been measured. Your entered location is not used to infer climate or query external data.'],
+
+    ['Tu plan de siembra', 'Your planting plan'],
+    ['Preparación, manejo y siguiente ciclo de ', 'Preparation, management and the next cycle for '],
+    ['Preparar', 'Prepare'],
+    ['Sembrar', 'Plant'],
+    ['Cuidar', 'Care'],
+    ['Después', 'Afterwards'],
+    ['Etapas del plan', 'Plan stages'],
+    ['Prepara tu terreno', 'Prepare your plot'],
+    ['Así podrías sembrar', 'How you could plant'],
+    ['Cuida tu cultivo', 'Care for your crop'],
+    ['Después de la cosecha', 'After the harvest'],
+    ['No inicies todavía.', 'Do not start yet.'],
+    ['Primero confirma la aptitud.', 'Confirm suitability first.'],
+    ['Estas instrucciones son para cuando resuelvas las limitaciones y vuelvas a evaluar tus respuestas.', 'These instructions apply once you resolve the limitations and reassess your answers.'],
+    ['Resuelve lo indicado y confirma las condiciones antes de iniciar.', 'Address the recommendations and confirm conditions before starting.'],
+    ['Cuida el suelo y prepara una rotación de otra familia.', 'Care for the soil and plan a rotation with another crop family.'],
+    ['Guía orientativa: adapta el manejo a tu variedad y región.', 'General guidance: adapt management to your variety and region.'],
+    ['Revisa pH, nutrientes, materia orgánica y sanidad con análisis y apoyo local; ajusta enmiendas según resultados.', 'Review pH, nutrients, organic matter and soil health with testing and local support; adjust amendments according to results.'],
+    ['Confirma variedad, época de siembra y temperatura con orientación local. No se deducen de tu ubicación escrita.', 'Confirm the variety, planting season and temperature with local guidance. These are not inferred from your entered location.'],
+    ['Prepara tutores o espaldera antes de sembrar el frijol de enredadera.', 'Prepare stakes or a trellis before planting climbing beans.'],
+    ['Reserva el espacio indicado para tu frijol arbustivo; normalmente no necesita espaldera.', 'Allow the recommended space for bush beans; they generally do not need a trellis.'],
+    ['Confirma si tu variedad de frijol es arbustiva o trepadora para definir espacio y soporte.', 'Confirm whether your bean variety is bush or climbing to determine spacing and support.'],
+    ['Prioriza riego eficiente y cobertura entre líneas, sin cubrir semillas ni coronas. Revisa humedad antes de regar.', 'Prioritize efficient irrigation and mulch between rows, without covering seeds or crowns. Check moisture before watering.'],
+    ['Prioriza análisis de suelo, compost maduro según resultados y rotación. Las leguminosas no garantizan un aporte de nitrógeno sin nodulación efectiva.', 'Prioritize soil testing, mature compost according to results and crop rotation. Legumes do not guarantee nitrogen input without effective nodulation.'],
+    ['Consulta el ciclo de una variedad local y empieza con un área de prueba; no aceleres la siembra si faltan agua, Absorción del agua o temperatura adecuados.', 'Check the growing cycle of a local variety and start with a trial area; do not rush planting without adequate water, drainage or temperature.'],
+    ['Consulta el ciclo de una variedad local y empieza con un área de prueba; no aceleres la siembra si faltan agua, drenaje o temperatura adecuados.', 'Check the growing cycle of a local variety and start with a trial area; do not rush planting without adequate water, drainage or temperature.'],
+    ['Registra familias y sanidad del lote, conserva cobertura y evita la compactación.', 'Record crop families and plot health, maintain ground cover and avoid compaction.'],
+    ['Equilibra agua, nutrición y cobertura; ajusta el manejo con observaciones del suelo y del cultivo.', 'Balance water, nutrition and ground cover; adjust management using soil and crop observations.'],
+    ['Siembra directamente en una cama fina y sin piedras. Sigue la profundidad y separación de tu variedad; evita trasplantar.', 'Direct sow into a fine, stone-free bed. Follow your variety’s depth and spacing recommendations; avoid transplanting.'],
+    ['Siembra directamente en temporada fresca, según tu variedad. Instala soporte si es trepadora; respeta el espacio indicado en el envase.', 'Direct sow in a cool season appropriate for your variety. Install support for climbing varieties; follow the spacing on the seed packet.'],
+    ['Siembra directamente en suelo suelto. Aclara las plántulas si nacen agrupadas; usa la separación y profundidad de tu variedad.', 'Direct sow into loose soil. Thin seedlings if they emerge in clusters; use your variety’s recommended spacing and depth.'],
+    ['Siembra directamente cuando haya pasado el riesgo de heladas y el suelo esté suficientemente cálido para tu variedad.', 'Direct sow after frost risk has passed and the soil is warm enough for your variety.'],
+    ['Usa semillas sanas y sigue las indicaciones de profundidad, separación y época de la variedad. Empieza con un lote pequeño si las condiciones son inciertas.', 'Use healthy seeds and follow the variety’s depth, spacing and season recommendations. Start with a small plot if conditions are uncertain.'],
+    ['Humedece la cama para germinación sin formar charcos. Comprueba antes que tengas agua para el establecimiento.', 'Moisten the seedbed for germination without creating puddles. First confirm that water is available for establishment.'],
+    ['Aclara las plantas cuando se establezcan y mantén humedad uniforme. Evita estiércol fresco y compactar la cama.', 'Thin plants once established and maintain consistent moisture. Avoid fresh manure and compacting the bed.'],
+    ['Cuida la humedad durante floración y formación de vainas. La fijación de nitrógeno requiere nodulación efectiva; no sustituye un análisis de suelo.', 'Maintain moisture during flowering and pod formation. Nitrogen fixation requires effective nodulation; it does not replace soil testing.'],
+    ['Mantén humedad uniforme para favorecer raíces de buena calidad y evita trabajar el suelo mojado.', 'Maintain consistent moisture to support good-quality roots and avoid working wet soil.'],
+    ['Vigila la humedad en floración y llenado de vainas. Evita mojar el follaje de forma prolongada y revisa la presencia de plagas.', 'Monitor moisture during flowering and pod filling. Avoid keeping foliage wet for long periods and check for pests.'],
+    ['Controla malezas y coloca cobertura entre líneas cuando las plantas estén establecidas; no tapes plántulas ni acumules material contra tallos.', 'Control weeds and mulch between rows once plants are established; do not cover seedlings or pile material against stems.'],
+    ['Observa plagas y enfermedades con frecuencia. Si hay síntomas, pide identificación local antes de aplicar productos.', 'Check regularly for pests and diseases. If symptoms appear, seek local identification before applying products.'],
+    ['Registra la cantidad cosechada y los problemas que se presentaron.', 'Record the quantity harvested and any problems encountered.'],
+    ['Retira las plantas enfermas y conserva los residuos vegetales sanos como cobertura del suelo.', 'Remove diseased plants and keep healthy plant residues as ground cover.'],
+    ['Revisa la humedad y fertilidad del suelo, y rota el cultivo antes de volver a sembrar.', 'Review soil moisture and fertility, and rotate crops before planting again.'],
+    ['¿Qué sembrar después?', 'What could you plant next?'],
+    ['Opciones para explorar, no aptitud confirmada. Reevalúa el lote tras cosechar: sus condiciones pueden cambiar.', 'Options to explore, not confirmed suitability. Reassess the plot after harvest: its conditions may change.'],
+    ['Confirma suelo suelto, profundidad, luz, agua y temporada adecuada.', 'Confirm loose soil, depth, light, water and a suitable season.'],
+    ['Solo en una futura temporada fresca; no es la opción para el calor reportado.', 'Only in a future cool season; not an option for the reported heat.'],
+    ['Opción para temporada fresca, con agua suficiente y buen Absorción del agua.', 'An option for a cool season, with sufficient water and good drainage.'],
+    ['Opción para temporada fresca, con agua suficiente y buen drenaje.', 'An option for a cool season, with sufficient water and good drainage.'],
+    ['Solo después de las heladas y con suelo cálido para la variedad.', 'Only after frost risk has passed and with soil warm enough for the variety.'],
+    ['Opción para temporada sin heladas y con temperatura adecuada a la variedad.', 'An option for a frost-free season with temperatures suitable for the variety.'],
+    ['En el calor reportado, confirma tolerancia de la variedad o espera una temporada más fresca.', 'For the reported heat, confirm variety tolerance or wait for a cooler season.'],
+    ['Aún falta confirmar la temperatura.', 'Temperature still needs to be confirmed.'],
+    ['Primero resuelve los problemas actuales de agua o Absorción del agua.', 'First resolve current water availability or drainage problems.'],
+    ['Primero resuelve los problemas actuales de agua o drenaje.', 'First resolve current water availability or drainage problems.'],
+    ['Familia:', 'Family:'],
+    ['Distinta a ', 'Different from '],
+    ['Si no puedes corregirlo:', 'If you cannot resolve it:'],
+    ['con sombra, busca otra zona; con cama compacta o pedregosa, valora una cama elevada; sin agua suficiente, pospón la siembra; con clima inadecuado, cambia de temporada. Otro cultivo no elimina por sí solo el problema.', 'for shade, find another area; for a compacted or stony bed, consider a raised bed; without enough water, postpone planting; for unsuitable weather, change the season. A different crop does not eliminate the problem by itself.'],
+    ['Corregir mis respuestas', 'Correct my answers'],
+    ['Próximo paso: datos NASA', 'Next step: NASA data'],
+    ['Una futura versión podría añadir observaciones de precipitación, temperatura y vegetación, junto con información local del suelo.', 'A future version could add precipitation, temperature and vegetation observations alongside local soil information.'],
+    ['Evaluar otro cultivo', 'Assess another crop'],
+    ['Volver al diagnóstico', 'Back to the assessment'],
+    ['Prototipo educativo. La aptitud y las opciones de rotación requieren validación local. Las casillas son una lista de seguimiento: marcarlas no cambia el diagnóstico. No se guardan al cerrar o recargar la página.', 'Educational prototype. Suitability and rotation options require local validation. Checkboxes are a tracking checklist: checking them does not change the assessment. They are not saved when the page is closed or reloaded.']
+  ];
+
+  const dictionary = new Map(translations);
+  const escapeRegExp = text =>
+    text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  const pattern = new RegExp(
+    [...dictionary.keys()]
+      .sort((a, b) => b.length - a.length)
+      .map(escapeRegExp)
+      .join('|'),
+    'g'
+  );
+
+  const textCache = new WeakMap();
+  const attributeCache = new WeakMap();
+
+  function translate(text) {
+    if (language === 'es') return text;
+
+    return text
+      .replace(pattern, match => dictionary.get(match))
+      .replace(/Paso (\d+) de (\d+)/g, 'Step $1 of $2')
+      .replace(/Pregunta (\d+) de (\d+)/g, 'Question $1 of $2')
+      .replace(/(\d+) de (\d+) tareas marcadas/g, '$1 of $2 tasks checked');
+  }
+
+  function isLocation(element) {
+    const item = element.closest('.summary-item');
+
+    return Boolean(
+      item &&
+      /Ubicación|Location/.test(
+        item.querySelector('span')?.textContent || ''
+      ) &&
+      element.closest('b')
+    );
+  }
+
+  const controls = document.createElement('label');
+
+  controls.style.cssText = `
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    color:var(--forest);
+    flex-shrink:0;
+  `;
+
+  controls.innerHTML = `
+    <span aria-hidden="true">🌐</span>
+    <select
+      id="languageSelect"
+      aria-label="Idioma / Language"
+      style="
+        padding:9px;
+        border:1px solid var(--line);
+        border-radius:12px;
+        background:white;
+        color:var(--forest);
+        font:inherit;
+      "
+    >
+      <option value="en">English</option>
+	  <option value="es">Español</option>
+    </select>
+  `;
+
+  const header = document.querySelector('.top');
+  header.style.flexWrap = 'wrap';
+  header.append(controls);
+
+  const observer = new MutationObserver(applyLanguage);
+
+  function applyLanguage() {
+    observer.disconnect();
+
+    try {
+      document.documentElement.lang = language;
+
+      document.title = language === 'es'
+        ? 'Dr. Fallow — Cultivar con inteligencia'
+        : 'Dr. Fallow — Grow smarter';
+
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT
+      );
+
+      let node;
+
+      while ((node = walker.nextNode())) {
+        const element = node.parentElement;
+
+        if (
+          !element ||
+          element.closest('script,style,select,textarea') ||
+          isLocation(element)
+        ) {
+          continue;
+        }
+
+        const previous = textCache.get(node);
+
+        const original =
+          previous && node.nodeValue === previous.translated
+            ? previous.original
+            : node.nodeValue;
+
+        // La ubicación escrita por el usuario no se traduce.
+        if (
+          element.closest('.bubble.user') &&
+          original === answers.location
+        ) {
+          continue;
+        }
+
+        const translated = translate(original);
+
+        textCache.set(node, { original, translated });
+
+        if (node.nodeValue !== translated) {
+          node.nodeValue = translated;
+        }
+      }
+
+      document
+        .querySelectorAll('[aria-label],[placeholder],[title]')
+        .forEach(element => {
+          if (element.closest('select') || isLocation(element)) {
+            return;
+          }
+
+          let cache = attributeCache.get(element);
+
+          if (!cache) {
+            cache = new Map();
+            attributeCache.set(element, cache);
+          }
+
+          for (const attribute of [
+            'aria-label',
+            'placeholder',
+            'title'
+          ]) {
+            if (!element.hasAttribute(attribute)) continue;
+
+            const current = element.getAttribute(attribute);
+            const previous = cache.get(attribute);
+
+            const original =
+              previous && current === previous.translated
+                ? previous.original
+                : current;
+
+            const translated = translate(original);
+
+            cache.set(attribute, { original, translated });
+
+            if (current !== translated) {
+              element.setAttribute(attribute, translated);
+            }
+          }
+        });
+    } finally {
+      observer.observe(document.body, {
+        subtree: true,
+        childList: true,
+        characterData: true
+      });
+    }
+  }
+
+  document
+    .getElementById('languageSelect')
+    .addEventListener('change', event => {
+      language = event.target.value;
+      applyLanguage();
+    });
+
+  applyLanguage();
+})();
+</script>	
 </body>
 </html>
 ```
